@@ -12,6 +12,7 @@ export async function GET(request: Request) {
     const url = new URL(request.url);
     const draft = url.searchParams.get('draft');
     const debug = url.searchParams.get('debug');
+    const summary = url.searchParams.get('summary') === '1';
     const useExternal = (process.env.USE_EXTERNAL || 'false').toLowerCase() === 'true';
     const EXTERNAL_BLOG_URL = process.env.EXTERNAL_BLOG_URL || '';
     
@@ -118,47 +119,84 @@ export async function GET(request: Request) {
       }
     };
 
+    // Wenn nur Zusammenfassung gewünscht: direkt Index-Einträge als Karten zurückgeben (sehr schnell)
+    if (summary) {
+      const summarize = (entry: any) => {
+        const slug = deriveSlug(entry);
+        const safe = typeof entry === 'object' && entry ? entry : {};
+        // Versuche, ein Cover aus dem Index zu übernehmen, falls vorhanden
+        if (safe.coverImage) safe.coverImage = toProxy(String(safe.coverImage));
+        if (!safe.slug && slug) safe.slug = slug;
+        return {
+          id: safe.id ?? slug ?? undefined,
+          slug: safe.slug ?? slug,
+          title: safe.title ?? safe.name ?? slug ?? 'Ohne Titel',
+          coverImage: safe.coverImage,
+          excerpt: safe.excerpt,
+          isDraft: safe.isDraft,
+          updatedAt: safe.updatedAt,
+          category: safe.category,
+          tags: safe.tags,
+        };
+      };
+      const cards = filteredPosts.map(summarize);
+      return NextResponse.json({ results: cards }, {
+        headers: {
+          'Cache-Control': 's-maxage=60, stale-while-revalidate=300'
+        }
+      });
+    }
+
     // Vollständige Blog-Posts laden (extern bevorzugt)
-    const posts: any[] = [];
+    let posts: any[] = [];
     if (useExternal && EXTERNAL_BLOG_URL) {
       const base = EXTERNAL_BLOG_URL.replace(/\/$/, '');
       const diagnostics: any[] = [];
-      for (const indexEntry of filteredPosts) {
+      const postsIndexed: Array<any | undefined> = new Array(filteredPosts.length);
+      await Promise.all(filteredPosts.map(async (indexEntry: any, i: number) => {
         try {
           const slug = deriveSlug(indexEntry);
-          if (!slug) {
-            diagnostics.push({ entry: indexEntry, reason: 'no-slug' });
-            continue;
-          }
+          if (!slug) { diagnostics.push({ entry: indexEntry, reason: 'no-slug' }); return; }
           const fetchUrl = `${base}/${encodeURIComponent(slug)}.json?t=${Date.now()}`;
           const res = await fetch(fetchUrl, { cache: 'no-store' });
-          if (!res.ok) continue;
+          if (!res.ok) return;
           const postData = await res.json();
-          if (!postData.slug) postData.slug = slug; // sicherstellen, dass slug vorhanden ist
-          posts.push(normalizePostImages(postData));
+          if (!postData.slug) postData.slug = slug;
+          postsIndexed[i] = normalizePostImages(postData);
           diagnostics.push({ slug, ok: true });
         } catch {}
-      }
+      }));
+      posts = postsIndexed.filter(Boolean) as any[];
       if (debug === '1') {
-        return NextResponse.json({ debug: true, countIndex: filteredPosts.length, loaded: posts.length, notes: diagnostics });
+        return NextResponse.json({ debug: true, countIndex: filteredPosts.length, loaded: posts.length, notes: diagnostics }, {
+          headers: {
+            'Cache-Control': 's-maxage=30'
+          }
+        });
       }
     } else {
       const blogDir = path.join(process.cwd(), 'server', 'uploads', 'blog');
-      for (const indexEntry of filteredPosts) {
+      const postsIndexed: Array<any | undefined> = new Array(filteredPosts.length);
+      await Promise.all(filteredPosts.map(async (indexEntry: any, i: number) => {
         try {
           const slug = deriveSlug(indexEntry);
-          if (!slug) continue;
+          if (!slug) return;
           const postPath = path.join(blogDir, `${slug}.json`);
-          if (!fs.existsSync(postPath)) continue;
+          if (!fs.existsSync(postPath)) return;
           const postData = JSON.parse(fs.readFileSync(postPath, 'utf8'));
-          if (!postData.slug) postData.slug = slug; // sicherstellen, dass slug vorhanden ist
-          posts.push(normalizePostImages(postData));
+          if (!postData.slug) postData.slug = slug;
+          postsIndexed[i] = normalizePostImages(postData);
         } catch {}
-      }
+      }));
+      posts = postsIndexed.filter(Boolean) as any[];
     }
     
     console.log(`Geladene Blog-Posts: ${posts.length}`);
-    return NextResponse.json({ results: posts });
+    return NextResponse.json({ results: posts }, {
+      headers: {
+        'Cache-Control': 's-maxage=60, stale-while-revalidate=300'
+      }
+    });
   } catch (error) {
     console.error('Fehler in der API-Route /api/json-blog:', error);
     return NextResponse.json({ 
