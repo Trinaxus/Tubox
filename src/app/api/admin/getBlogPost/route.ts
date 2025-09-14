@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { fetchBlogPostById } from '@/lib/blogData';
+import { fetchBlogPostById } from '../../../../lib/blogData';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
