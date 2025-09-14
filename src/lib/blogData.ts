@@ -5,9 +5,15 @@ import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 
 // Pfad zum Blog-Verzeichnis (extern)
-// Im Entwicklungsmodus verwenden wir den lokalen Proxy, um CORS-Probleme zu vermeiden
+// In Produktion lesen wir aus dem externen JSON-Verzeichnis auf deinem PHP-Server.
+// In Entwicklung verwenden wir den lokalen Proxy, um CORS-Probleme zu vermeiden.
 const EXTERNAL_BLOG_URL = process.env.NODE_ENV === 'production'
-  ? (process.env.EXTERNAL_BLOG_URL || 'https://tubox.de/WebDisk/uploads/blog')
+  ? (
+      process.env.EXTERNAL_BLOG_URL ||
+      (process.env.NEXT_PUBLIC_SERVER_BASE_URL
+        ? `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/uploads/blog`
+        : 'https://tubox.de/TUBOX/server/uploads/blog')
+    )
   : '/api/external-blog';
 
 // Pfad zum Blog-Verzeichnis (lokal für Entwicklung)
@@ -98,15 +104,15 @@ async function readIndex(): Promise<BlogIndex> {
 async function writeIndex(index: BlogIndex) {
   if (process.env.NODE_ENV === 'production') {
     try {
-      // Im Produktionsmodus: Sende die Daten an ein Skript auf dem externen Webspace
-      const response = await fetch(`${EXTERNAL_BLOG_URL}/update-blog.php`, {
+      const UPDATE_BLOG_PHP_URL = process.env.UPDATE_BLOG_PHP_URL || `${EXTERNAL_BLOG_URL}/../update-blog.php`;
+      const response = await fetch(UPDATE_BLOG_PHP_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           action: 'update_index',
-          index: index
+          index: index,
         }),
       });
       
@@ -168,8 +174,8 @@ async function readBlogPost(slug: string): Promise<BlogPostData | null> {
 async function writeBlogPost(post: BlogPostData) {
   if (process.env.NODE_ENV === 'production') {
     try {
-      // Im Produktionsmodus: Sende die Daten an ein Skript auf dem externen Webspace
-      const response = await fetch(`${EXTERNAL_BLOG_URL}/update-blog.php`, {
+      const UPDATE_BLOG_PHP_URL = process.env.UPDATE_BLOG_PHP_URL || `${EXTERNAL_BLOG_URL}/../update-blog.php`;
+      const response = await fetch(UPDATE_BLOG_PHP_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -177,8 +183,8 @@ async function writeBlogPost(post: BlogPostData) {
         body: JSON.stringify({
           action: 'update_post',
           slug: post.slug,
-          post: post
-        })
+          post: post,
+        }),
       });
       
       if (!response.ok) {
@@ -230,35 +236,8 @@ async function updateIndex(post: BlogPostData) {
   await writeIndex(index);
 }
 
-// Hilfsfunktion zum Aktualisieren des Index auf dem Server
-async function updateIndexOnServer(index: BlogIndex) {
-  if (process.env.NODE_ENV === 'production') {
-    try {
-      // Im Produktionsmodus: Sende die Daten an ein Skript auf dem externen Webspace
-      const response = await fetch(`${EXTERNAL_BLOG_URL}/update-blog.php`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          action: 'update_index',
-          index: index
-        })
-      });
-      
-      if (!response.ok) {
-        throw new Error(`Failed to write blog index: ${response.status}`);
-      }
-    } catch (error) {
-      console.error('Error writing blog index:', error);
-      throw error;
-    }
-  } else {
-    // Im Entwicklungsmodus: Speichere die Daten im lokalen Dateisystem
-    ensureBlogDirExists();
-    fs.writeFileSync(INDEX_FILE_PATH, JSON.stringify(index, null, 2), 'utf8');
-  }
-}
+// Hinweis: Die frühere Helper-Funktion updateIndexOnServer wurde entfernt,
+// da alle Server-Updates zentral über UPDATE_BLOG_PHP_URL laufen.
 
 // Hilfsfunktion zum Entfernen eines Posts aus dem Index
 async function removeFromIndex(id: string) {
@@ -528,53 +507,4 @@ export async function deleteBlogPost(id: string) {
   }
 }
 
-// Hilfsfunktion zum Migrieren von Baserow zu JSON
-export async function migrateFromBaserow(baserowData: any) {
-  try {
-    let migratedCount = 0;
-    
-    // Transformiere die Baserow-Daten in unser Format
-    for (const post of baserowData.results) {
-      // Konvertiere Tags von String zu Array, falls nötig
-      let tags = [];
-      if (Array.isArray(post.field_4858584)) {
-        tags = post.field_4858584;
-      } else if (typeof post.field_4858584 === 'string' && post.field_4858584.trim() !== '') {
-        tags = post.field_4858584.split(',').map((tag: string) => tag.trim());
-      }
-      
-      // Erstelle den Slug, falls nicht vorhanden
-      let slug = post.field_4858576 || '';
-      if (!slug && post.field_4858575) {
-        slug = normalizeSlug(post.field_4858575);
-      }
-      
-      const blogPost: BlogPostData = {
-        id: post.id,
-        title: post.field_4858575 || '',
-        slug,
-        content: post.field_4858577 || '',
-        excerpt: post.field_4858578 || '',
-        coverImage: post.field_4858579 || '',
-        author: post.field_4858580 || '',
-        published: post.field_4858581 || '0',
-        publishedAt: post.field_4858582 || null,
-        updatedAt: post.field_4858583 || new Date().toISOString(),
-        tags,
-        category: post.field_4858585 || '',
-        isDraft: post.field_4858586 || '1',
-        seoTitle: post.field_4858587 || '',
-        seoDescription: post.field_4858588 || ''
-      };
-      
-      // Speichere den Blog-Post
-      writeBlogPost(blogPost);
-      migratedCount++;
-    }
-    
-    return { success: true, count: migratedCount };
-  } catch (error) {
-    console.error('Exception in migrateFromBaserow:', error);
-    throw error;
-  }
-}
+// Die frühere Migrationsfunktion aus Baserow wurde entfernt.

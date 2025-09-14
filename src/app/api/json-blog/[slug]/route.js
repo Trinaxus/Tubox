@@ -7,18 +7,36 @@ export const runtime = 'nodejs';
 
 // Extern bevorzugen, lokal als Fallback
 
-// Hilfsfunktion zum Normalisieren von Slugs
+// Hilfsfunktion zum Normalisieren von Slugs inkl. Datumsfix (25-08-2025 -> 25082025)
 function normalizeSlug(slug) {
-  return slug
-    .toLowerCase()
+  let s = String(slug || '').toLowerCase().trim();
+  // Datumsbestandteile DD-MM-YYYY zu DDMMYYYY zusammenziehen
+  s = s.replace(/(\d{2})-(\d{2})-(\d{4})/g, '$1$2$3');
+  // generische Normalisierung
+  s = s
     .replace(/[^a-z0-9-]/g, '-')
     .replace(/-+/g, '-')
     .replace(/^-|-$/g, '');
+  return s;
+}
+
+// Kandidaten aus einem Roh-Slug ableiten
+function buildSlugCandidates(raw) {
+  const original = String(raw || '');
+  const base = normalizeSlug(original);
+  const candidates = new Set();
+  candidates.add(base);
+  // Zusätzlicher Kandidat: explizit Datum ohne Bindestriche (falls die Normalisierung nichts verändert hat)
+  const dateFixed = String(original).toLowerCase().replace(/(\d{2})-(\d{2})-(\d{4})/g, '$1$2$3');
+  const dateFixedNorm = normalizeSlug(dateFixed);
+  candidates.add(dateFixedNorm);
+  return Array.from(candidates).filter(Boolean);
 }
 
 export async function GET(request, { params }) {
   try {
-    const { slug } = await params;
+    const raw = params?.slug;
+    const slug = Array.isArray(raw) ? raw[0] : raw;
     
     if (!slug) {
       return NextResponse.json(
@@ -26,9 +44,8 @@ export async function GET(request, { params }) {
         { status: 400 }
       );
     }
-    
-    // Normalisiere den Slug für die Dateiabfrage
-    const normalizedSlug = normalizeSlug(slug);
+    // Kandidaten-Slugs ableiten (z. B. 25-08-2025 -> 25082025)
+    const candidates = buildSlugCandidates(slug);
     
     // helper to map URLs to local proxy
     const toProxy = (u) => {
@@ -62,20 +79,24 @@ export async function GET(request, { params }) {
     const useExternal = (process.env.USE_EXTERNAL || 'false').toLowerCase() === 'true';
     const EXTERNAL_BLOG_URL = process.env.EXTERNAL_BLOG_URL || '';
     if (useExternal && EXTERNAL_BLOG_URL) {
-      try {
-        const res = await fetch(`${EXTERNAL_BLOG_URL}/${encodeURIComponent(normalizedSlug)}.json?t=${Date.now()}`, { cache: 'no-store' });
-        if (res.ok) {
-          const post = await res.json();
-          return NextResponse.json(normalizePostImages(post));
-        }
-      } catch (e) {}
+      for (const c of candidates) {
+        try {
+          const res = await fetch(`${EXTERNAL_BLOG_URL}/${encodeURIComponent(c)}.json?t=${Date.now()}`, { cache: 'no-store' });
+          if (res.ok) {
+            const post = await res.json();
+            return NextResponse.json(normalizePostImages(post));
+          }
+        } catch (e) {}
+      }
     }
     // Lokaler Fallback: Datei aus server/uploads/blog lesen
     const blogDir = path.join(process.cwd(), 'server', 'uploads', 'blog');
-    const postPath = path.join(blogDir, `${normalizedSlug}.json`);
-    if (fs.existsSync(postPath)) {
-      const post = JSON.parse(fs.readFileSync(postPath, 'utf8'));
-      return NextResponse.json(normalizePostImages(post));
+    for (const c of candidates) {
+      const postPath = path.join(blogDir, `${c}.json`);
+      if (fs.existsSync(postPath)) {
+        const post = JSON.parse(fs.readFileSync(postPath, 'utf8'));
+        return NextResponse.json(normalizePostImages(post));
+      }
     }
     return NextResponse.json({ error: 'Blog post not found' }, { status: 404 });
   } catch (error) {

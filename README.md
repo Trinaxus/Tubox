@@ -18,7 +18,7 @@ Eine moderne, responsive Galerie-Anwendung für Fotos und Videos, erstellt mit N
 - [TypeScript](https://www.typescriptlang.org/) - Typensicheres JavaScript
 - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS Framework
 - [Framer Motion](https://www.framer.com/motion/) - Animationen und Übergänge
-- [NextAuth.js](https://next-auth.js.org/) - Authentifizierung
+- PHP-Backend für Dateioperationen und Blog-JSON (extern)
 
 ## 🚀 Schnellstart
 
@@ -43,12 +43,13 @@ Eine moderne, responsive Galerie-Anwendung für Fotos und Videos, erstellt mit N
    ```
 
 3. Umgebungsvariablen einrichten:
-   Erstellen Sie eine `.env.local` Datei im Hauptverzeichnis mit folgenden Variablen:
-   ```
-   NEXTAUTH_SECRET=your-secret-key
-   NEXTAUTH_URL=http://localhost:3000
-   # Weitere erforderliche Umgebungsvariablen
-   ```
+   - Nutzen Sie die bereitgestellte `env.example` als Vorlage und erstellen Sie daraus Ihre `.env.local`.
+   - Wichtige Variablen (Auszug):
+     - `SITE_URL`, `NEXT_PUBLIC_SITE_URL`
+     - `SERVER_BASE_URL`, `NEXT_PUBLIC_SERVER_BASE_URL`
+     - `NEXT_PUBLIC_UPLOADS_BASE_URL`, `NEXT_PUBLIC_UPLOAD_ENDPOINT`
+     - `USE_EXTERNAL=true`, `EXTERNAL_BLOG_URL`, `UPDATE_BLOG_PHP_URL`
+     - Admin-Login ohne DB: `ADMIN_EMAIL`, `ADMIN_USERNAME`, `ADMIN_DISPLAY_NAME` und ENTWEDER `ADMIN_PASSWORD` (Dev) ODER `ADMIN_PASSWORD_HASH` (Prod)
 
 4. Entwicklungsserver starten:
    ```bash
@@ -72,98 +73,20 @@ src/
 └── types/                  # TypeScript Typdefinitionen
 ```
 
-## 📝 Upload-Funktionalität
+## 📝 Externes Blog & PHP-Server
 
-Die Anwendung unterstützt das Hochladen von Bildern und Videos:
-
-- Bilder werden automatisch erkannt und in der Galerie angezeigt
-- Videos können in speziellen Video-Galerien hochgeladen werden
-- Automatische Thumbnail-Erstellung für Videos
-- Unterstützung für Metadaten (Jahr, Kategorie, Tags)
-
-## 🌐 Server-API
-
-Die Anwendung bietet eine REST-API für Datei- und Ordneroperationen:
-
-### Dateioperationen
-- `POST /api/upload` - Hochladen von Dateien
-  - Parameter: `file` (Datei), `year`, `gallery`, `category`
-  - Erstellt automatisch Thumbnails für Bilder und Videos
-
-### Ordneroperationen
-- `GET /api/folders` - Liste aller verfügbaren Ordner abrufen
-- `POST /api/folders` - Neuen Ordner erstellen
-  - Parameter: `path` (Pfad des neuen Ordners)
-- `DELETE /api/folders` - Ordner löschen
-  - Parameter: `path` (Pfad des zu löschenden Ordners)
-
-### Galerieoperationen
-- `GET /api/galleries` - Liste aller Galerien abrufen
-- `GET /api/galleries/[galleryId]` - Details einer bestimmten Galerie abrufen
-- `POST /api/galleries` - Neue Galerie erstellen
-  - Parameter: `name`, `description`, `isPrivate`
-
-### Beispielfunktionen
-
-```typescript
-// Ordner erstellen
-const createFolder = async (path: string) => {
-  const response = await fetch('/api/folders', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ path })
-  });
-  return await response.json();
-};
-
-// Datei hochladen
-const uploadFile = async (file: File, year: string, gallery: string) => {
-  const formData = new FormData();
-  formData.append('file', file);
-  formData.append('year', year);
-  formData.append('gallery', gallery);
-  
-  const response = await fetch('/api/upload', {
-    method: 'POST',
-    body: formData
-  });
-  return await response.json();
-};
-```
-
-### Authentifizierung
-
-Die meisten API-Endpunkte erfordern eine gültige Authentifizierung. Fügen Sie den Authentifizierungs-Token im `Authorization`-Header hinzu:
-
-```
-Authorization: Bearer [IHR_TOKEN]
-```
-
-### Fehlerbehandlung
-
-Die API gibt standardisierte Fehlermeldungen im folgenden Format zurück:
-
-```json
-{
-  "success": false,
-  "error": "Fehlermeldung",
-  "code": "ERROR_CODE"
-}
-```
-
-Mögliche Fehlercodes:
-- `UNAUTHORIZED` - Nicht authentifiziert
-- `FORBIDDEN` - Keine Berechtigung
-- `NOT_FOUND` - Ressource nicht gefunden
-- `VALIDATION_ERROR` - Ungültige Eingabedaten
-- `INTERNAL_ERROR` - Serverfehler
+- Blog-Daten (Index + einzelne Posts) werden in Produktion aus einem externen JSON-Verzeichnis gelesen: `EXTERNAL_BLOG_URL`.
+- Änderungen (Erstellen/Updaten/Löschen) werden über deinen PHP-Endpoint ausgeführt: `UPDATE_BLOG_PHP_URL`.
+- In der Entwicklung kann lokal aus `public/uploads/blog/` gelesen/geschrieben werden.
 
 ## 🔒 Authentifizierung
 
-Die Anwendung verwendet NextAuth.js für die Authentifizierung. Folgende Authentifizierungsmethoden sind verfügbar:
+Die Admin-Anmeldung erfolgt ohne Datenbank über ENV-Variablen in `src/app/api/login/route.ts`:
 
-- E-Mail/Passwort
-- OAuth-Provider (Google, GitHub, etc.)
+- Identität: `ADMIN_EMAIL` (oder `ADMIN_USERNAME`)
+- Passwort: ENTWEDER `ADMIN_PASSWORD_HASH` (bcrypt, empfohlen) ODER `ADMIN_PASSWORD` (nur Dev)
+
+Hinweis: Es gibt keine Registrierung mehr in der App. Zugangsdaten werden serverseitig über ENV gepflegt.
 
 ## 🌐 Deployment
 

@@ -42,7 +42,6 @@ const API_ENDPOINTS = {
   DELETE_GALLERY: '/api/delete-gallery',
   DELETE_IMAGE: '/api/delete-image',
   LOGIN: '/api/login',
-  REGISTER: '/api/register',
   AUTH_ME: '/api/auth/me',
 };
 
@@ -173,12 +172,7 @@ export async function login(email: string, password: string): Promise<{ success:
 /**
  * Registrierungs-Funktion
  */
-export async function register(username: string, email: string, password: string): Promise<{ success: boolean; message: string }> {
-  return await fetchApi<{ success: boolean; message: string }>(API_ENDPOINTS.REGISTER, {
-    method: 'POST',
-    body: JSON.stringify({ username, email, password }),
-  });
-}
+// Registrierung entfernt: Kein /api/register mehr
 
 /**
  * Prüfe Authentifizierung
