@@ -6,18 +6,20 @@ import Link from 'next/link';
 import blogStyles from '../blogCards.module.css';
 
 type BlogDetailProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 // Hilfsfunktion: Lade Blog-Post über interne API, damit lokaler Modus funktioniert
 async function getBlogPost(slug: string) {
   try {
-    const rawBase = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || process.env.VERCEL_URL || 'http://localhost:3000';
+    const isProd = !!process.env.VERCEL_URL || process.env.NODE_ENV === 'production';
+    const rawBase = isProd
+      ? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : (process.env.NEXT_PUBLIC_SITE_URL || ''))
+      : (process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || 'http://localhost:3000');
     const base = rawBase.startsWith('http') ? rawBase.replace(/\/$/, '') : `https://${rawBase.replace(/\/$/, '')}`;
-    const apiUrl = `${base}/api/json-blog/${encodeURIComponent(slug)}`;
-    const response = await fetch(apiUrl, { cache: 'no-store' });
+    const response = await fetch(`${base}/api/json-blog/${encodeURIComponent(slug)}`, { cache: 'no-store' });
     
     if (!response.ok) {
       console.error(`Blog post not found: ${slug} (Status: ${response.status})`);
@@ -32,7 +34,7 @@ async function getBlogPost(slug: string) {
 }
 
 export default async function BlogDetail({ params }: BlogDetailProps) {
-  const { slug } = params || {} as { slug: string };
+  const { slug } = await params;
   if (!slug) return notFound();
   const decodedSlug = decodeURIComponent(slug);
   
@@ -73,14 +75,27 @@ export default async function BlogDetail({ params }: BlogDetailProps) {
           )}
         </div>
         <p style={{ fontSize: 14, color: '#888' }}>
-          Autor: {post.author || 'Unbekannt'} | 
-          Geändert: {post.updatedAt ? new Date(post.updatedAt).toLocaleString('de-DE', { 
-            day: '2-digit', 
-            month: '2-digit', 
-            year: 'numeric', 
-            hour: '2-digit', 
-            minute: '2-digit' 
-          }) : 'Unbekannt'}
+          Autor: {post.author || 'Unbekannt'} |
+          {' '}Geändert:{' '}
+          {(() => {
+            try {
+              if (!post.updatedAt) return 'Unbekannt';
+              const d = new Date(post.updatedAt);
+              // Deterministisches Format in UTC, um Hydration-Mismatches zu vermeiden
+              const fmt = new Intl.DateTimeFormat('de-DE', {
+                timeZone: 'UTC',
+                day: '2-digit', month: '2-digit', year: 'numeric',
+                hour: '2-digit', minute: '2-digit'
+              }).format(d);
+              return (
+                <time dateTime={d.toISOString()} suppressHydrationWarning>
+                  {fmt}
+                </time>
+              );
+            } catch {
+              return 'Unbekannt';
+            }
+          })()}
         </p>
         {/* Tags section with semicolon format */}
         {post.tags && (

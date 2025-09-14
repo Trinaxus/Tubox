@@ -187,11 +187,24 @@ export default function EditBlogPostForm({ post }: { post: any }) {
       // Stelle sicher, dass isDraft als String übergeben wird
       console.log('isDraft Status vor dem Senden:', updatedPost.isDraft, typeof updatedPost.isDraft);
       
-      // Direkter Zugriff auf die API-Route
-      const res = await fetch(`/api/json-blog/${originalSlug}`, {
-        method: "PUT",
+      // Admin-Update-Route verwenden (extern-first)
+      const res = await fetch(`/api/admin/updateBlogPost`, {
+        method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedPost),
+        body: JSON.stringify({
+          id: post.id,
+          title,
+          slug: newSlug, // gewünschter Slug (kann vom ursprünglichen abweichen)
+          content: contentWithTemplate,
+          excerpt,
+          coverImage,
+          author,
+          tags,
+          category,
+          isDraft: updatedPost.isDraft,
+          seoTitle,
+          seoDescription,
+        }),
       });
       
       const responseText = await res.text();

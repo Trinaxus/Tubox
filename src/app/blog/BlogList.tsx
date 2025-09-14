@@ -37,6 +37,7 @@ export default function BlogList({ posts }: { posts: any[] }) {
   const [error, setError] = useState<string | null>(null);
   const [clientPosts, setClientPosts] = useState<any[]>(Array.isArray(posts) ? posts : []);
   const [loading, setLoading] = useState<boolean>(false);
+  const [enriched, setEnriched] = useState<boolean>(false);
 
   // Client-Fallback: Wenn SSR keine Posts geliefert hat, lade sie clientseitig
   useEffect(() => {
@@ -53,6 +54,71 @@ export default function BlogList({ posts }: { posts: any[] }) {
         .finally(() => setLoading(false));
     }
   }, []);
+
+  // Enrichment: Falls Metadaten/Bild fehlen, lade Detail-Post nach und übernehme fehlende Felder
+  useEffect(() => {
+    if (enriched) return; // nur einmal versuchen
+    const needsMeta = (p: any) => {
+      const noImg = !p?.coverImage && !p?.featuredImage && !(Array.isArray(p?.images) && p.images[0]);
+      const noExcerpt = !p?.excerpt || (typeof p.excerpt === 'string' && p.excerpt.trim() === '');
+      const noTags = !p?.tags || (Array.isArray(p.tags) ? p.tags.length === 0 : (typeof p.tags === 'string' && p.tags.trim() === ''));
+      const noCat = !p?.category;
+      const noAuthorOrDate = !p?.author || !p?.updatedAt;
+      return noImg || noExcerpt || noTags || noCat || noAuthorOrDate;
+    };
+    const missing = (clientPosts || []).map((p, i) => ({ p, i })).filter(({ p }) => p?.slug && needsMeta(p));
+    if (missing.length === 0) {
+      setEnriched(true);
+      return;
+    }
+    (async () => {
+      try {
+        const updated = [...clientPosts];
+        await Promise.all(missing.map(async ({ p, i }) => {
+          try {
+            const res = await fetch(`/api/json-blog/${encodeURIComponent(p.slug)}`, { cache: 'no-store' });
+            if (!res.ok) return;
+            const full = await res.json();
+            const cover = full?.coverImage || full?.featuredImage || (Array.isArray(full?.images) ? full.images[0] : '');
+            // Excerpt ableiten: zuerst <style>/<script>-Blöcke entfernen, dann HTML-Tags strippen
+            const excerpt = (typeof full?.excerpt === 'string' && full.excerpt.trim())
+              ? full.excerpt
+              : (typeof full?.content === 'string'
+                  ? (() => {
+                      const withoutStyle = full.content
+                        .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
+                        .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '');
+                      const textOnly = withoutStyle
+                        .replace(/<[^>]*>/g, ' ')
+                        .replace(/\s+/g, ' ')
+                        .trim();
+                      return textOnly.length > 220 ? textOnly.slice(0, 217) + '…' : textOnly;
+                    })()
+                  : undefined);
+            const tags = Array.isArray(full?.tags)
+              ? full.tags
+              : (typeof full?.tags === 'string' ? full.tags.split(';').map((t: string) => t.trim()).filter(Boolean) : undefined);
+            const category = full?.category ?? p.category;
+            const author = full?.author ?? p.author;
+            const updatedAt = full?.updatedAt ?? p.updatedAt;
+
+            updated[i] = {
+              ...p,
+              ...(cover ? { coverImage: cover } : {}),
+              ...(excerpt ? { excerpt } : {}),
+              ...(tags ? { tags } : {}),
+              ...(category ? { category } : {}),
+              ...(author ? { author } : {}),
+              ...(updatedAt ? { updatedAt } : {}),
+            };
+          } catch {}
+        }));
+        setClientPosts(updated);
+      } finally {
+        setEnriched(true);
+      }
+    })();
+  }, [clientPosts, enriched]);
   const placeholderImg = "https://placehold.co/600x300?text=Kein+Bild";
   const toProxy = (u: string | null | undefined) => {
     if (!u || typeof u !== 'string') return u || '';
@@ -106,7 +172,7 @@ export default function BlogList({ posts }: { posts: any[] }) {
             <div className={blogStyles.blogCard} key={post.id || `post-${index}`}>
               <div className={blogStyles.blogImageContainer}>
                 <img
-                  src={toProxy(post.coverImage) || placeholderImg}
+                  src={toProxy((post.coverImage || post.featuredImage || (Array.isArray(post.images) ? post.images[0] : '')) as string) || placeholderImg}
                   alt={post.title || 'Blog-Beitrag'}
                   className={blogStyles.blogImage}
                   loading="lazy"

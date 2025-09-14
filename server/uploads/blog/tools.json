@@ -1,0 +1,24 @@
+{
+  "id": 1756300780282,
+  "title": "TOOLS",
+  "slug": "tools",
+  "excerpt": "",
+  "coverImage": "/api/proxy-file?path=2000%2FTOOLS%2Ftwisted-fold-v4-3.png",
+  "featuredImage": "/api/proxy-file?path=2000%2FTOOLS%2Ftwisted-fold-v4-3.png",
+  "author": "Trinax",
+  "tags": [
+    "webtool",
+    "muster",
+    "generator",
+    "color",
+    "orb"
+  ],
+  "category": "News",
+  "content": "\n<style>\n@media (max-width: 800px) {\n  .info-cards-flex {\n    flex-direction: column !important;\n    gap: 12px !important;\n    align-items: stretch !important;\n  }\n  .info-cards-flex > div {\n    min-width: 0 !important;\n    width: 100% !important;\n    margin-right: 0 !important;\n  }\n  ul, li, span, h5 {\n    font-size: 1em !important;\n  }\n}\n.blog-content-outer {\n  border: 1px solid #ff3b304d;\n  padding: 10px;\n  border-radius: 16px;\n  background: linear-gradient(90deg, rgba(0,225,255,0.05) 0%, rgba(255,105,180,0.05) 100%);\n  max-width: 800px;\n  margin: 30px auto;\n  box-sizing: border-box;\n  transition: border 0.5s;\n}\n.blog-content-outer:hover {\n  box-shadow: 0 0 24px rgba(255, 42, 0, 0.3), 0 0 0 0px rgba(255, 42, 0, 0.3);\n  border: 1px solid #ff3b3070;\n}\n</style>\n<div class=\"blog-content-outer\">\n  <div style=\"\n    background: rgba(255,255,255,0.05);\n    border-radius: 13px;\n    padding: 15px;\n    box-sizing: border-box;\"><!-- -------------------Dein Text start---------- -->\n<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Download-Bereich</title>\n    <style>\n        .download-container {\n            max-width: 500px;\n            margin: 20px auto;\n            font-family: Arial, sans-serif;\n        }\n        \n        .download-btn {\n            display: block;\n            width: 100%;\n            padding: 15px 20px;\n            margin-bottom: 15px;\n            background: linear-gradient(to bottom, #4a6bdf, #3949ab);\n            color: white;\n            text-align: center;\n            text-decoration: none;\n            border-radius: 8px;\n            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\n            transition: all 0.3s ease;\n            font-weight: bold;\n            border: none;\n            cursor: pointer;\n        }\n        \n        .download-btn:hover {\n            background: linear-gradient(to bottom, #3949ab, #303f9f);\n            transform: translateY(-2px);\n            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);\n        }\n        \n        .download-btn:active {\n            transform: translateY(0);\n            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n        }\n        \n        .version-info {\n            font-size: 14px;\n            margin-top: 5px;\n            opacity: 0.9;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"download-container\">\n        <a href=\"https://tubox.de/ttteewrtwetewtwetwet/uploads/2000/TOOLS/Tracklist HTML Generator.html\" class=\"download-btn\" target=\"_blank\">\n            Tracklist HTML Generator\n            <div class=\"version-info\">import text to HTML Tabelle + Download Link</div>\n        </a>\n\n        <a href=\"https://tubox.de/WebDisk/uploads/2000/TOOLS/version_5.html\" class=\"download-btn\" target=\"_blank\">\n            TOOLS Version 5\n            <div class=\"version-info\">Aktuelle Version mit allen neuen Funktionen</div>\n        </a>\n        \n        <a href=\"https://tubox.de/WebDisk/uploads/2000/TOOLS/version_4.html\" class=\"download-btn\" target=\"_blank\">\n            TOOLS Version 4\n            <div class=\"version-info\">Stabile Version mit erweiterten Funktionen</div>\n        </a>\n        \n        <a href=\"https://tubox.de/WebDisk/uploads/2000/TOOLS/version_3.html\" class=\"download-btn\" target=\"_blank\">\n            TOOLS Version 3\n            <div class=\"version-info\">Bewährte Basisversion</div>\n        </a>\n    </div>\n</body>\n</html>\n<!-- -------------------Dein Text ende---------- --></div>\n</div>",
+  "seoTitle": "",
+  "seoDescription": "",
+  "isDraft": "0",
+  "publishedAt": "2025-08-27T13:19:40.282Z",
+  "updatedAt": "2025-09-14T14:07:21.968Z",
+  "createdAt": "2025-08-27T13:19:40.282Z"
+}

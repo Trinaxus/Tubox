@@ -18,33 +18,19 @@ export async function GET(request: Request) {
     
     console.log('API-Route /api/json-blog aufgerufen mit draft=', draft, 'useExternal=', useExternal);
     
-    // Index laden (extern oder lokal Fallback)
+    // Index ausschließlich extern laden (vereinfachtes Modell)
     let indexData: any = null;
-    if (useExternal && EXTERNAL_BLOG_URL) {
+    if (EXTERNAL_BLOG_URL) {
       try {
-        const res = await fetch(`${EXTERNAL_BLOG_URL}/index.json?t=${Date.now()}`, { cache: 'no-store' });
+        const res = await fetch(`${EXTERNAL_BLOG_URL.replace(/\/$/, '')}/index.json?t=${Date.now()}`, { cache: 'no-store' });
         if (res.ok) {
           const text = await res.text();
           try { indexData = JSON.parse(text); } catch { indexData = null; }
         }
-      } catch (e) {
-        console.warn('Externe Blog index.json nicht erreichbar, falle auf lokal zurück');
-      }
+      } catch {}
     }
     if (!indexData) {
-      try {
-        const blogDir = path.join(process.cwd(), 'server', 'uploads', 'blog');
-        const indexPath = path.join(blogDir, 'index.json');
-        if (fs.existsSync(indexPath)) {
-          indexData = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
-        } else {
-          console.warn('Lokale Blog index.json nicht gefunden');
-          return NextResponse.json({ results: [] });
-        }
-      } catch (e) {
-        console.error('Lokales Lesen der Blog-Index-Datei fehlgeschlagen:', e);
-        return NextResponse.json({ results: [] });
-      }
+      return NextResponse.json({ results: [] }, { status: 200 });
     }
     
     // Unterstütze verschiedene Index-Formate: Array, {posts:[]}, {items:[]}, {entries:[]}, oder Objekt mit Values als Einträge
@@ -124,19 +110,44 @@ export async function GET(request: Request) {
       const summarize = (entry: any) => {
         const slug = deriveSlug(entry);
         const safe = typeof entry === 'object' && entry ? entry : {};
-        // Versuche, ein Cover aus dem Index zu übernehmen, falls vorhanden
-        if (safe.coverImage) safe.coverImage = toProxy(String(safe.coverImage));
+        const pickCover = () => {
+          const c1 = typeof safe.coverImage === 'string' ? safe.coverImage : '';
+          const c2 = typeof safe.featuredImage === 'string' ? safe.featuredImage : '';
+          const c3 = Array.isArray(safe.images) && typeof safe.images[0] === 'string' ? safe.images[0] : '';
+          const chosen = c1 || c2 || c3 || '';
+          return chosen ? toProxy(String(chosen)) : undefined;
+        };
+        // Excerpt sanitisieren: <style>/<script> entfernen, dann HTML-Tags entfernen
+        const makeExcerpt = () => {
+          const raw = typeof safe.excerpt === 'string' && safe.excerpt.trim()
+            ? safe.excerpt
+            : (typeof safe.content === 'string' ? safe.content : '');
+          if (!raw) return undefined;
+          const withoutStyle = raw
+            .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
+            .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '');
+          const textOnly = withoutStyle
+            .replace(/<[^>]*>/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+          return textOnly.length > 220 ? textOnly.slice(0, 217) + '…' : textOnly;
+        };
+        // Tags als Array normalisieren (Semikolon-getrennt zulassen)
+        const normTags = Array.isArray(safe.tags)
+          ? safe.tags
+          : (typeof safe.tags === 'string' ? safe.tags.split(';').map((t: string) => t.trim()).filter(Boolean) : undefined);
+
         if (!safe.slug && slug) safe.slug = slug;
         return {
           id: safe.id ?? slug ?? undefined,
           slug: safe.slug ?? slug,
           title: safe.title ?? safe.name ?? slug ?? 'Ohne Titel',
-          coverImage: safe.coverImage,
-          excerpt: safe.excerpt,
+          coverImage: pickCover(),
+          excerpt: makeExcerpt(),
           isDraft: safe.isDraft,
           updatedAt: safe.updatedAt,
           category: safe.category,
-          tags: safe.tags,
+          tags: normTags,
         };
       };
       const cards = filteredPosts.map(summarize);
@@ -147,9 +158,9 @@ export async function GET(request: Request) {
       });
     }
 
-    // Vollständige Blog-Posts laden (extern bevorzugt)
+    // Vollständige Blog-Posts laden (extern)
     let posts: any[] = [];
-    if (useExternal && EXTERNAL_BLOG_URL) {
+    if (EXTERNAL_BLOG_URL) {
       const base = EXTERNAL_BLOG_URL.replace(/\/$/, '');
       const diagnostics: any[] = [];
       const postsIndexed: Array<any | undefined> = new Array(filteredPosts.length);
@@ -174,21 +185,6 @@ export async function GET(request: Request) {
           }
         });
       }
-    } else {
-      const blogDir = path.join(process.cwd(), 'server', 'uploads', 'blog');
-      const postsIndexed: Array<any | undefined> = new Array(filteredPosts.length);
-      await Promise.all(filteredPosts.map(async (indexEntry: any, i: number) => {
-        try {
-          const slug = deriveSlug(indexEntry);
-          if (!slug) return;
-          const postPath = path.join(blogDir, `${slug}.json`);
-          if (!fs.existsSync(postPath)) return;
-          const postData = JSON.parse(fs.readFileSync(postPath, 'utf8'));
-          if (!postData.slug) postData.slug = slug;
-          postsIndexed[i] = normalizePostImages(postData);
-        } catch {}
-      }));
-      posts = postsIndexed.filter(Boolean) as any[];
     }
     
     console.log(`Geladene Blog-Posts: ${posts.length}`);
