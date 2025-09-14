@@ -29,18 +29,19 @@
     "react-swipeable": "^7.0.2",
     "uuid": "^11.1.0",
     "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "typescript": "5.8.3",
+    "@types/react": "19.1.5",
+    "@types/react-dom": "^19"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@types/node": "20.17.50",
     "@types/node-fetch": "^2.6.12",
-    "@types/react": "19.1.5",
-    "@types/react-dom": "^19",
+    
     "@types/uuid": "^10.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
     
-    "typescript": "5.8.3"
   }
 }
