@@ -11,6 +11,7 @@ export async function GET(request: Request) {
   try {
     const url = new URL(request.url);
     const draft = url.searchParams.get('draft');
+    const debug = url.searchParams.get('debug');
     const useExternal = (process.env.USE_EXTERNAL || 'false').toLowerCase() === 'true';
     const EXTERNAL_BLOG_URL = process.env.EXTERNAL_BLOG_URL || '';
     
@@ -45,22 +46,17 @@ export async function GET(request: Request) {
       }
     }
     
-    // Unterstütze beide Formate: direktes Array oder Objekt mit posts-Array
-    let postsArray = [];
-    
+    // Unterstütze verschiedene Index-Formate: Array, {posts:[]}, {items:[]}, {entries:[]}, oder Objekt mit Values als Einträge
+    let postsArray: any[] = [];
     if (Array.isArray(indexData)) {
-      // Neues Format: direktes Array
       postsArray = indexData;
-    } else if (indexData.posts && Array.isArray(indexData.posts)) {
-      // Altes Format: Objekt mit posts-Array
-      postsArray = indexData.posts;
-    } else {
-      console.error('Index-Datei hat unerwartete Struktur');
-      return NextResponse.json({ 
-        error: 'Index-Datei hat unerwartete Struktur', 
-        results: [] 
-      }, { status: 500 });
+    } else if (indexData && typeof indexData === 'object') {
+      if (Array.isArray((indexData as any).posts)) postsArray = (indexData as any).posts;
+      else if (Array.isArray((indexData as any).items)) postsArray = (indexData as any).items;
+      else if (Array.isArray((indexData as any).entries)) postsArray = (indexData as any).entries;
+      else postsArray = Object.values(indexData as any);
     }
+    if (!Array.isArray(postsArray)) postsArray = [];
     
     // Blogposts filtern, wenn draft-Parameter gesetzt ist
     let filteredPosts = postsArray;
@@ -105,22 +101,53 @@ export async function GET(request: Request) {
       return p;
     };
 
+    // Hilfsfunktion: Slug aus Eintrag ableiten
+    const deriveSlug = (entry: any): string | null => {
+      const tryVal = (v?: any) => (typeof v === 'string' && v.trim() ? v.trim() : null);
+      let s = tryVal(entry?.slug);
+      if (!s) s = tryVal(entry?.file) || tryVal(entry?.filename) || tryVal(entry?.path) || tryVal(entry?.url);
+      if (!s) return null;
+      // Wenn Pfad/URL übergeben wurde, Basename ohne .json extrahieren
+      try {
+        const noQuery = s.split('?')[0];
+        const parts = noQuery.split('/');
+        const base = parts[parts.length - 1];
+        return base.replace(/\.json$/i, '');
+      } catch {
+        return s.replace(/\.json$/i, '');
+      }
+    };
+
     // Vollständige Blog-Posts laden (extern bevorzugt)
     const posts: any[] = [];
     if (useExternal && EXTERNAL_BLOG_URL) {
+      const base = EXTERNAL_BLOG_URL.replace(/\/$/, '');
+      const diagnostics: any[] = [];
       for (const indexEntry of filteredPosts) {
         try {
-          const res = await fetch(`${EXTERNAL_BLOG_URL}/${encodeURIComponent(indexEntry.slug)}.json?t=${Date.now()}`, { cache: 'no-store' });
+          const slug = deriveSlug(indexEntry);
+          if (!slug) {
+            diagnostics.push({ entry: indexEntry, reason: 'no-slug' });
+            continue;
+          }
+          const fetchUrl = `${base}/${encodeURIComponent(slug)}.json?t=${Date.now()}`;
+          const res = await fetch(fetchUrl, { cache: 'no-store' });
           if (!res.ok) continue;
           const postData = await res.json();
           posts.push(normalizePostImages(postData));
+          diagnostics.push({ slug, ok: true });
         } catch {}
+      }
+      if (debug === '1') {
+        return NextResponse.json({ debug: true, countIndex: filteredPosts.length, loaded: posts.length, notes: diagnostics });
       }
     } else {
       const blogDir = path.join(process.cwd(), 'server', 'uploads', 'blog');
       for (const indexEntry of filteredPosts) {
         try {
-          const postPath = path.join(blogDir, `${indexEntry.slug}.json`);
+          const slug = deriveSlug(indexEntry);
+          if (!slug) continue;
+          const postPath = path.join(blogDir, `${slug}.json`);
           if (!fs.existsSync(postPath)) continue;
           const postData = JSON.parse(fs.readFileSync(postPath, 'utf8'));
           posts.push(normalizePostImages(postData));
