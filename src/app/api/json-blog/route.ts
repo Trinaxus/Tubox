@@ -134,6 +134,7 @@ export async function GET(request: Request) {
           const res = await fetch(fetchUrl, { cache: 'no-store' });
           if (!res.ok) continue;
           const postData = await res.json();
+          if (!postData.slug) postData.slug = slug; // sicherstellen, dass slug vorhanden ist
           posts.push(normalizePostImages(postData));
           diagnostics.push({ slug, ok: true });
         } catch {}
@@ -150,6 +151,7 @@ export async function GET(request: Request) {
           const postPath = path.join(blogDir, `${slug}.json`);
           if (!fs.existsSync(postPath)) continue;
           const postData = JSON.parse(fs.readFileSync(postPath, 'utf8'));
+          if (!postData.slug) postData.slug = slug; // sicherstellen, dass slug vorhanden ist
           posts.push(normalizePostImages(postData));
         } catch {}
       }
