@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// Baserow-Konfiguration
+// Baserow-Konfiguration (keine Secrets hardcoden!)
 const BASEROW_API_URL = process.env.BASEROW_API_URL || "https://api.baserow.io/api";
 const BASEROW_USER_TABLE_ID = process.env.BASEROW_USER_TABLE_ID || "669";
-const BASEROW_TOKEN = process.env.BASEROW_TOKEN || "o6Xp7Ms6gKT3R0xcoaW6iFSKdPGT1mjf";
+const BASEROW_TOKEN = process.env.BASEROW_TOKEN || '';
 
 // Direkter Zugriff auf die Baserow-API
 export async function GET(req: NextRequest) {
@@ -16,6 +16,9 @@ export async function GET(req: NextRequest) {
     
     // Direkter Zugriff auf Baserow
     const url = `${BASEROW_API_URL}/database/rows/table/${BASEROW_USER_TABLE_ID}/?user_field_names=true`;
+    if (!BASEROW_TOKEN) {
+      return NextResponse.json({ error: "Baserow API-Token fehlt" }, { status: 500 });
+    }
     const response = await fetch(url, {
       headers: { Authorization: `Token ${BASEROW_TOKEN}` },
       cache: "no-store"

@@ -5,16 +5,16 @@ import BlogList from './BlogList';
 // Hilfsfunktion: Lade Blogposts über interne API (unterstützt lokalen/external Modus)
 async function getBlogPosts() {
   try {
-    // Relativer Aufruf vermeidet ENV-Abhängigkeit in Produktion
-    const res = await fetch('/api/json-blog', {
-      cache: 'no-store',
-    });
+    // Nutze relative interne API-URL (funktioniert in SSR zuverlässig)
+    const endpoint = `/api/json-blog`;
+    const res = await fetch(endpoint, { cache: 'no-store' });
     if (!res.ok) {
-      console.error(`Failed to fetch blog posts from API: ${res.status} ${res.statusText}`);
+      console.error(`[blog/page] API fetch failed: ${res.status} ${res.statusText}`);
       return [];
     }
     const data = await res.json();
     const results = Array.isArray(data?.results) ? data.results : [];
+    console.log(`[blog/page] results length: ${results.length}`);
     // Sicherheitshalber Filter für Entwürfe
     return results.filter((post: any) => post && post.isDraft !== '1');
   } catch (error) {

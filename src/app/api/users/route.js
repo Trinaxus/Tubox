@@ -9,11 +9,13 @@ const BASEROW_USER_TABLE_ID = process.env.BASEROW_USER_TABLE_ID || "599962";
 const BASEROW_TOKEN = process.env.BASEROW_TOKEN;
 const BASEROW_URL = `${BASEROW_API_URL}/database/rows/table/${BASEROW_USER_TABLE_ID}/`;
 
-console.log("Baserow-Konfiguration:", {
-  API_URL: BASEROW_API_URL,
-  USER_TABLE_ID: BASEROW_USER_TABLE_ID,
-  TOKEN: BASEROW_TOKEN ? "Vorhanden" : "Nicht vorhanden"
-});
+// Nur in Development minimal loggen (ohne Token-Details), in Produktion still
+if (process.env.NODE_ENV !== 'production') {
+  console.log("[users] Baserow-Konfiguration:", {
+    API_URL: BASEROW_API_URL,
+    USER_TABLE_ID: BASEROW_USER_TABLE_ID,
+  });
+}
 
 // Feldnamen aus der Benutzer-Tabelle
 const FIELD_MAP = {

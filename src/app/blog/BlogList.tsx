@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import blogStyles from './blogCards.module.css';
 
@@ -35,6 +35,24 @@ function CategoryFilter({ categories, selected, setSelected }: { categories: str
 export default function BlogList({ posts }: { posts: any[] }) {
   const [selected, setSelected] = useState<string>('Alle');
   const [error, setError] = useState<string | null>(null);
+  const [clientPosts, setClientPosts] = useState<any[]>(Array.isArray(posts) ? posts : []);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  // Client-Fallback: Wenn SSR keine Posts geliefert hat, lade sie clientseitig
+  useEffect(() => {
+    if (!clientPosts || clientPosts.length === 0) {
+      setLoading(true);
+      fetch('/api/json-blog', { cache: 'no-store' })
+        .then(async (res) => {
+          if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+          const data = await res.json();
+          const results = Array.isArray(data?.results) ? data.results : [];
+          setClientPosts(results);
+        })
+        .catch((e) => setError(`Konnte Blogposts nicht laden: ${e.message}`))
+        .finally(() => setLoading(false));
+    }
+  }, []);
   const placeholderImg = "https://placehold.co/600x300?text=Kein+Bild";
   const toProxy = (u: string | null | undefined) => {
     if (!u || typeof u !== 'string') return u || '';
@@ -53,7 +71,7 @@ export default function BlogList({ posts }: { posts: any[] }) {
   };
 
   // Sicherstellen, dass posts ein Array ist
-  const validPosts = Array.isArray(posts) ? posts : [];
+  const validPosts = Array.isArray(clientPosts) ? clientPosts : [];
   
   // Debug-Ausgabe der Posts-Struktur
   console.log('BlogList received posts:', validPosts);
@@ -80,6 +98,9 @@ export default function BlogList({ posts }: { posts: any[] }) {
       <CategoryFilter categories={categories} selected={selected} setSelected={setSelected} />
       {error && <div style={{ color: 'red', marginBottom: 16 }}>Fehler: {error}</div>}
       <div className={blogStyles.blogGrid}>
+        {loading && (
+          <div style={{ color: '#888', marginTop: 16 }}>Lade Blogposts…</div>
+        )}
         {filteredPosts.length > 0 ? (
           filteredPosts.map((post: any, index: number) => (
             <div className={blogStyles.blogCard} key={post.id || `post-${index}`}>
