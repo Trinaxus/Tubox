@@ -1,0 +1,2010 @@
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 054 - 28.12.2019.jpg
+            [full_path] => Trinax Mix Set 054 - 28.12.2019.jpg
+            [type] => image/jpeg
+            [tmp_name] => /tmp/phpiecr43eqlvn25EELEpm
+            [error] => 0
+            [size] => 4323950
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax - SETS - COVERS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax - SETS - COVERS
+Bereinigt: 2000/Trinax - SETS - COVERS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - SETS - COVERS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - SETS - COVERS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 071 - 08.03.2025.mp3
+            [full_path] => Trinax Mix Set 071 - 08.03.2025.mp3
+            [type] => audio/mpeg
+            [tmp_name] => /tmp/php5gs8dmp4itm96Su4H22
+            [error] => 0
+            [size] => 231906715
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax - MIX SETS - DOWNLOADS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax - MIX SETS - DOWNLOADS
+Bereinigt: 2000/Trinax - MIX SETS - DOWNLOADS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 074 - 25.06.2025.mp3
+            [full_path] => Trinax Mix Set 074 - 25.06.2025.mp3
+            [type] => audio/mpeg
+            [tmp_name] => /tmp/phpunfqhhb0k7ho3GtUEND
+            [error] => 0
+            [size] => 252361540
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax - MIX SETS - DOWNLOADS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax - MIX SETS - DOWNLOADS
+Bereinigt: 2000/Trinax - MIX SETS - DOWNLOADS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 072 - 23.05.2025.mp3
+            [full_path] => Trinax Mix Set 072 - 23.05.2025.mp3
+            [type] => audio/mpeg
+            [tmp_name] => /tmp/phpvsd2q52om9in8yD2xiP
+            [error] => 0
+            [size] => 265371049
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax - MIX SETS - DOWNLOADS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax - MIX SETS - DOWNLOADS
+Bereinigt: 2000/Trinax - MIX SETS - DOWNLOADS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 075 - 25.06.2025.mp3
+            [full_path] => Trinax Mix Set 075 - 25.06.2025.mp3
+            [type] => audio/mpeg
+            [tmp_name] => /tmp/phpje02agj707fmcVtAQG0
+            [error] => 0
+            [size] => 291243181
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax - MIX SETS - DOWNLOADS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax - MIX SETS - DOWNLOADS
+Bereinigt: 2000/Trinax - MIX SETS - DOWNLOADS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 073 - 23.06.2025.mp3
+            [full_path] => Trinax Mix Set 073 - 23.06.2025.mp3
+            [type] => audio/mpeg
+            [tmp_name] => /tmp/phpoadt3eboo00p38AczBM
+            [error] => 0
+            [size] => 368744543
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax - MIX SETS - DOWNLOADS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax - MIX SETS - DOWNLOADS
+Bereinigt: 2000/Trinax - MIX SETS - DOWNLOADS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 057 - 09.04.2020.mp3
+            [full_path] => Trinax Mix Set 057 - 09.04.2020.mp3
+            [type] => audio/mpeg
+            [tmp_name] => /tmp/php8q9t1r20htcqdPNwVzl
+            [error] => 0
+            [size] => 267745765
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax - MIX SETS - DOWNLOADS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax - MIX SETS - DOWNLOADS
+Bereinigt: 2000/Trinax - MIX SETS - DOWNLOADS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => trinax-mix-set-072-23052025.json
+            [full_path] => trinax-mix-set-072-23052025.json
+            [type] => application/json
+            [tmp_name] => /tmp/phpr8fc06k3lsog5diS7Me
+            [error] => 0
+            [size] => 11511
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => trinax-mix-set-066-01042021.json
+            [full_path] => trinax-mix-set-066-01042021.json
+            [type] => application/json
+            [tmp_name] => /tmp/phpslf01i440cps9euboYt
+            [error] => 0
+            [size] => 2654
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => trinax-mix-set-065-07022021.json
+            [full_path] => trinax-mix-set-065-07022021.json
+            [type] => application/json
+            [tmp_name] => /tmp/phplo7n3hs7lduh5S8FGgn
+            [error] => 0
+            [size] => 2654
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => trinax-mix-set-069-19112022.json
+            [full_path] => trinax-mix-set-069-19112022.json
+            [type] => application/json
+            [tmp_name] => /tmp/phpofaajcjairpi9g0PuHD
+            [error] => 0
+            [size] => 2669
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => trinax-mix-set-060-12082020.json
+            [full_path] => trinax-mix-set-060-12082020.json
+            [type] => application/json
+            [tmp_name] => /tmp/php8s2vc5d6u642carz9bv
+            [error] => 0
+            [size] => 2972
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => trinax-mix-set-075-25062025.json
+            [full_path] => trinax-mix-set-075-25062025.json
+            [type] => application/json
+            [tmp_name] => /tmp/php5jmhh5vfs1jf9jxRVE5
+            [error] => 0
+            [size] => 12222
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => trinax-mix-set-071-08032025.json
+            [full_path] => trinax-mix-set-071-08032025.json
+            [type] => application/json
+            [tmp_name] => /tmp/php045ftur73gcbem5MxMO
+            [error] => 0
+            [size] => 9921
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => index.json
+            [full_path] => index.json
+            [type] => application/json
+            [tmp_name] => /tmp/phpg2iaqcgbbo7fcegVIuE
+            [error] => 0
+            [size] => 3882
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => trinax-mix-set-058-03052020.json
+            [full_path] => trinax-mix-set-058-03052020.json
+            [type] => application/json
+            [tmp_name] => /tmp/phpi3uu489ctnk4ftHR3cl
+            [error] => 0
+            [size] => 13090
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => meine-cameras.json
+            [full_path] => meine-cameras.json
+            [type] => application/json
+            [tmp_name] => /tmp/phpnhceivj0evtebMNnuJb
+            [error] => 0
+            [size] => 8976
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => trinax-mix-set-074-25062025.json
+            [full_path] => trinax-mix-set-074-25062025.json
+            [type] => application/json
+            [tmp_name] => /tmp/phppn4cl8d431nacPlSV9T
+            [error] => 0
+            [size] => 11446
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => trinax-mix-set-059-19072020.json
+            [full_path] => trinax-mix-set-059-19072020.json
+            [type] => application/json
+            [tmp_name] => /tmp/php154032u3r082bCqFA2a
+            [error] => 0
+            [size] => 2980
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => trinax-mix-set-064-24102020.json
+            [full_path] => trinax-mix-set-064-24102020.json
+            [type] => application/json
+            [tmp_name] => /tmp/phpp4voijh2gnjl13oPwPd
+            [error] => 0
+            [size] => 2980
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => trinax-mix-set-057-09042020.json
+            [full_path] => trinax-mix-set-057-09042020.json
+            [type] => application/json
+            [tmp_name] => /tmp/phps3beklj0g9kfcvkFqbP
+            [error] => 0
+            [size] => 10495
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => trinax-mix-set-062-08092020.json
+            [full_path] => trinax-mix-set-062-08092020.json
+            [type] => application/json
+            [tmp_name] => /tmp/phpmo82c5gf0l6jclZHhYC
+            [error] => 0
+            [size] => 2972
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => trinax-mix-set-056-12042020.json
+            [full_path] => trinax-mix-set-056-12042020.json
+            [type] => application/json
+            [tmp_name] => /tmp/phptvr5vla6i845c2hDSuT
+            [error] => 0
+            [size] => 11249
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => trinax-mix-set-054-28122019.json
+            [full_path] => trinax-mix-set-054-28122019.json
+            [type] => application/json
+            [tmp_name] => /tmp/phpnbbcretketi16kLoeV4
+            [error] => 0
+            [size] => 12827
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => trinax-mix-set-073-23062025.json
+            [full_path] => trinax-mix-set-073-23062025.json
+            [type] => application/json
+            [tmp_name] => /tmp/phpkmlhv9q45f51eNDRZu2
+            [error] => 0
+            [size] => 14168
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => trinax-mix-set-063-11102020.json
+            [full_path] => trinax-mix-set-063-11102020.json
+            [type] => application/json
+            [tmp_name] => /tmp/phpqk6svveaglur8CbYV2R
+            [error] => 0
+            [size] => 2970
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => trinax-mix-set-061-06092020.json
+            [full_path] => trinax-mix-set-061-06092020.json
+            [type] => application/json
+            [tmp_name] => /tmp/phpcm4b37jmh7um8IYQFpq
+            [error] => 0
+            [size] => 2972
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => update-blog.php
+            [full_path] => update-blog.php
+            [type] => text/php
+            [tmp_name] => /tmp/phpb1g5vvbjfick3SFZLDT
+            [error] => 0
+            [size] => 3465
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => update-blog.php
+            [full_path] => update-blog.php
+            [type] => text/php
+            [tmp_name] => /tmp/php4q0j6kiam6hu5j0SHBT
+            [error] => 0
+            [size] => 7527
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => update-blog.php
+            [full_path] => update-blog.php
+            [type] => text/php
+            [tmp_name] => /tmp/phpatpkvsmbd3pocEZnvo6
+            [error] => 0
+            [size] => 11049
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => meine-cameras.json
+            [full_path] => meine-cameras.json
+            [type] => application/json
+            [tmp_name] => /tmp/php9ck41mlg214k0MNiMya
+            [error] => 0
+            [size] => 8976
+        )
+
+)
+
+POST: Array
+(
+    [path] => blog
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: blog
+Bereinigt: blog
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/blog
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => meine-cameras.json
+            [full_path] => meine-cameras.json
+            [type] => application/json
+            [tmp_name] => /tmp/phppdhqe1h8i2fncM9aiCf
+            [error] => 0
+            [size] => 8976
+        )
+
+)
+
+POST: Array
+(
+    [path] => /
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: /
+Bereinigt: /
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Bildschirmfoto 2025-07-10 um 19.41.54.png
+            [full_path] => Bildschirmfoto 2025-07-10 um 19.41.54.png
+            [type] => image/png
+            [tmp_name] => /tmp/phpfjg1s31k7nhses76jPd
+            [error] => 0
+            [size] => 347631
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Project_bilder
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Project_bilder
+Bereinigt: 2000/Project_bilder
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Bildschirmfoto 2025-07-10 um 19.48.15.png
+            [full_path] => Bildschirmfoto 2025-07-10 um 19.48.15.png
+            [type] => image/png
+            [tmp_name] => /tmp/phps2pljeuo7kmcaBex9pd
+            [error] => 0
+            [size] => 305527
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Project_bilder
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Project_bilder
+Bereinigt: 2000/Project_bilder
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Bildschirmfoto 2025-07-10 um 19.45.26.png
+            [full_path] => Bildschirmfoto 2025-07-10 um 19.45.26.png
+            [type] => image/png
+            [tmp_name] => /tmp/php2792lb322j7acS13F3u
+            [error] => 0
+            [size] => 276480
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Project_bilder
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Project_bilder
+Bereinigt: 2000/Project_bilder
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Bildschirmfoto 2025-07-10 um 19.29.11.png
+            [full_path] => Bildschirmfoto 2025-07-10 um 19.29.11.png
+            [type] => image/png
+            [tmp_name] => /tmp/phpkgdua09g02pv7iIMeZP
+            [error] => 0
+            [size] => 709219
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Project_bilder
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Project_bilder
+Bereinigt: 2000/Project_bilder
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Bildschirmfoto 2025-07-10 um 19.43.41.png
+            [full_path] => Bildschirmfoto 2025-07-10 um 19.43.41.png
+            [type] => image/png
+            [tmp_name] => /tmp/phpkgp45jj29gmeeK5i9Sh
+            [error] => 0
+            [size] => 2504508
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Project_bilder
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Project_bilder
+Bereinigt: 2000/Project_bilder
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Bildschirmfoto 2025-07-10 um 19.44.17.png
+            [full_path] => Bildschirmfoto 2025-07-10 um 19.44.17.png
+            [type] => image/png
+            [tmp_name] => /tmp/phprfq80kp0k1piePMz02N
+            [error] => 0
+            [size] => 3971825
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Project_bilder
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Project_bilder
+Bereinigt: 2000/Project_bilder
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Bildschirmfoto 2025-07-10 um 19.54.51.png
+            [full_path] => Bildschirmfoto 2025-07-10 um 19.54.51.png
+            [type] => image/png
+            [tmp_name] => /tmp/phpfhf9o7jrar89cs4DRUo
+            [error] => 0
+            [size] => 707842
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Project_bilder
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Project_bilder
+Bereinigt: 2000/Project_bilder
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Bildschirmfoto 2025-07-10 um 19.58.17.png
+            [full_path] => Bildschirmfoto 2025-07-10 um 19.58.17.png
+            [type] => image/png
+            [tmp_name] => /tmp/php5chnqfbo862a2zwWFhE
+            [error] => 0
+            [size] => 967080
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Project_bilder
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Project_bilder
+Bereinigt: 2000/Project_bilder
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Bildschirmfoto 2025-07-10 um 19.59.31.png
+            [full_path] => Bildschirmfoto 2025-07-10 um 19.59.31.png
+            [type] => image/png
+            [tmp_name] => /tmp/phpr6v2dvce2kksdbB8PRt
+            [error] => 0
+            [size] => 6498916
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Project_bilder
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Project_bilder
+Bereinigt: 2000/Project_bilder
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Bildschirmfoto 2025-07-10 um 20.05.04.png
+            [full_path] => Bildschirmfoto 2025-07-10 um 20.05.04.png
+            [type] => image/png
+            [tmp_name] => /tmp/phpso5j7dqa8vr14nizqe1
+            [error] => 0
+            [size] => 5984410
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Project_bilder
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Project_bilder
+Bereinigt: 2000/Project_bilder
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Bildschirmfoto 2025-07-10 um 20.08.31.png
+            [full_path] => Bildschirmfoto 2025-07-10 um 20.08.31.png
+            [type] => image/png
+            [tmp_name] => /tmp/php6dk8og21q4sn4Oue4Rh
+            [error] => 0
+            [size] => 5149034
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Project_bilder
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Project_bilder
+Bereinigt: 2000/Project_bilder
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Bildschirmfoto 2025-07-10 um 21.57.25.png
+            [full_path] => Bildschirmfoto 2025-07-10 um 21.57.25.png
+            [type] => image/png
+            [tmp_name] => /tmp/php5mts2i559frmeGG6p5T
+            [error] => 0
+            [size] => 875908
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Project_bilder
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Project_bilder
+Bereinigt: 2000/Project_bilder
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Bildschirmfoto 2025-07-12 um 08.25.29.png
+            [full_path] => Bildschirmfoto 2025-07-12 um 08.25.29.png
+            [type] => image/png
+            [tmp_name] => /tmp/php1ehse3k22ke3f4aAmdo
+            [error] => 0
+            [size] => 2071499
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Project_bilder
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Project_bilder
+Bereinigt: 2000/Project_bilder
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Bildschirmfoto 2025-07-12 um 08.37.36.png
+            [full_path] => Bildschirmfoto 2025-07-12 um 08.37.36.png
+            [type] => image/png
+            [tmp_name] => /tmp/phpb6gikgss48psedTawTQ
+            [error] => 0
+            [size] => 429924
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Project_bilder
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Project_bilder
+Bereinigt: 2000/Project_bilder
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => cue-edit.png
+            [full_path] => cue-edit.png
+            [type] => image/png
+            [tmp_name] => /tmp/php9b4tq3felpin0eDES5f
+            [error] => 0
+            [size] => 707625
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Project_bilder
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Project_bilder
+Bereinigt: 2000/Project_bilder
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Project_bilder
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Bildschirmfoto 2025-07-15 um 21.57.15.png
+            [full_path] => Bildschirmfoto 2025-07-15 um 21.57.15.png
+            [type] => image/png
+            [tmp_name] => /tmp/phprisp9081319u0UjGhWP
+            [error] => 0
+            [size] => 894718
+        )
+
+)
+
+POST: Array
+(
+    [path] => /
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: /
+Bereinigt: /
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 049 - 18.03.2019.jpg
+            [full_path] => Trinax Mix Set 049 - 18.03.2019.jpg
+            [type] => image/jpeg
+            [tmp_name] => /tmp/phpgp8oof4fleos69yKPLP
+            [error] => 0
+            [size] => 2643214
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax - SETS - COVERS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax - SETS - COVERS
+Bereinigt: 2000/Trinax - SETS - COVERS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - SETS - COVERS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - SETS - COVERS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 050 - 26.06.2019.jpg
+            [full_path] => Trinax Mix Set 050 - 26.06.2019.jpg
+            [type] => image/jpeg
+            [tmp_name] => /tmp/phpamu3n1lvu8ksfAUy0es
+            [error] => 0
+            [size] => 2538480
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax - SETS - COVERS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax - SETS - COVERS
+Bereinigt: 2000/Trinax - SETS - COVERS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - SETS - COVERS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - SETS - COVERS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 048 - 17.02.2019.jpg
+            [full_path] => Trinax Mix Set 048 - 17.02.2019.jpg
+            [type] => image/jpeg
+            [tmp_name] => /tmp/phphln491srojgj9C3Qy3m
+            [error] => 0
+            [size] => 2562709
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax - SETS - COVERS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax - SETS - COVERS
+Bereinigt: 2000/Trinax - SETS - COVERS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - SETS - COVERS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - SETS - COVERS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 045 - 10.11.2017.jpg
+            [full_path] => Trinax Mix Set 045 - 10.11.2017.jpg
+            [type] => image/jpeg
+            [tmp_name] => /tmp/phpp3qks0ffmihc7jouhuN
+            [error] => 0
+            [size] => 3541338
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax - SETS - COVERS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax - SETS - COVERS
+Bereinigt: 2000/Trinax - SETS - COVERS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - SETS - COVERS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - SETS - COVERS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 046 - 27.05.2018.jpg
+            [full_path] => Trinax Mix Set 046 - 27.05.2018.jpg
+            [type] => image/jpeg
+            [tmp_name] => /tmp/phpvmeqf2gpac085yA18th
+            [error] => 0
+            [size] => 3737485
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax - SETS - COVERS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax - SETS - COVERS
+Bereinigt: 2000/Trinax - SETS - COVERS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - SETS - COVERS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - SETS - COVERS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 052 - 29.09.2019.jpg
+            [full_path] => Trinax Mix Set 052 - 29.09.2019.jpg
+            [type] => image/jpeg
+            [tmp_name] => /tmp/phppfsha08pu3491wg6ASI
+            [error] => 0
+            [size] => 4294720
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax - SETS - COVERS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax - SETS - COVERS
+Bereinigt: 2000/Trinax - SETS - COVERS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - SETS - COVERS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - SETS - COVERS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 047 - 13.11.2018.jpg
+            [full_path] => Trinax Mix Set 047 - 13.11.2018.jpg
+            [type] => image/jpeg
+            [tmp_name] => /tmp/phpn1tken2orbbpdvRysfN
+            [error] => 0
+            [size] => 6400577
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax - SETS - COVERS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax - SETS - COVERS
+Bereinigt: 2000/Trinax - SETS - COVERS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - SETS - COVERS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - SETS - COVERS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 047 - 13.11.2018.mp3
+            [full_path] => Trinax Mix Set 047 - 13.11.2018.mp3
+            [type] => audio/mpeg
+            [tmp_name] => /tmp/phpvh1hdemvgecffGNntBO
+            [error] => 0
+            [size] => 177840808
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax - MIX SETS - DOWNLOADS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax - MIX SETS - DOWNLOADS
+Bereinigt: 2000/Trinax - MIX SETS - DOWNLOADS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 049 - 18.03.2019.mp3
+            [full_path] => Trinax Mix Set 049 - 18.03.2019.mp3
+            [type] => audio/mpeg
+            [tmp_name] => /tmp/phphdark29bcdnocxJd3E6
+            [error] => 0
+            [size] => 187934964
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax - MIX SETS - DOWNLOADS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax - MIX SETS - DOWNLOADS
+Bereinigt: 2000/Trinax - MIX SETS - DOWNLOADS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 046 - 27.05.2018.mp3
+            [full_path] => Trinax Mix Set 046 - 27.05.2018.mp3
+            [type] => audio/mpeg
+            [tmp_name] => /tmp/phpmcar3p5g4as30skUV6q
+            [error] => 0
+            [size] => 233701558
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax - MIX SETS - DOWNLOADS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax - MIX SETS - DOWNLOADS
+Bereinigt: 2000/Trinax - MIX SETS - DOWNLOADS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 048 - 17.02.2019.mp3
+            [full_path] => Trinax Mix Set 048 - 17.02.2019.mp3
+            [type] => audio/mpeg
+            [tmp_name] => /tmp/phpa77noipljiej6FXQH4o
+            [error] => 0
+            [size] => 257308004
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax - MIX SETS - DOWNLOADS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax - MIX SETS - DOWNLOADS
+Bereinigt: 2000/Trinax - MIX SETS - DOWNLOADS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 045 - 10.11.2017.mp3
+            [full_path] => Trinax Mix Set 045 - 10.11.2017.mp3
+            [type] => audio/mpeg
+            [tmp_name] => /tmp/phpp8fc30kv1qmq1uPmMEI
+            [error] => 0
+            [size] => 438674170
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax - MIX SETS - DOWNLOADS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax - MIX SETS - DOWNLOADS
+Bereinigt: 2000/Trinax - MIX SETS - DOWNLOADS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax - MIX SETS - DOWNLOADS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 076 - 25.08.2025.cue
+            [full_path] => Trinax Mix Set 076 - 25.08.2025.cue
+            [type] => application/octet-stream
+            [tmp_name] => /tmp/php6aggndufk4vf1n9zKd3
+            [error] => 0
+            [size] => 5195
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax-MIX-SETS-DOWNLOADS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax-MIX-SETS-DOWNLOADS
+Bereinigt: 2000/Trinax-MIX-SETS-DOWNLOADS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax-MIX-SETS-DOWNLOADS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax-MIX-SETS-DOWNLOADS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Trinax Mix Set 076 - 25.08.2025.mp3
+            [full_path] => Trinax Mix Set 076 - 25.08.2025.mp3
+            [type] => audio/mpeg
+            [tmp_name] => /tmp/phpu3q54ask6mva0ZmSM0m
+            [error] => 0
+            [size] => 461839690
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/Trinax-MIX-SETS-DOWNLOADS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/Trinax-MIX-SETS-DOWNLOADS
+Bereinigt: 2000/Trinax-MIX-SETS-DOWNLOADS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax-MIX-SETS-DOWNLOADS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/Trinax-MIX-SETS-DOWNLOADS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => version_3.html
+            [full_path] => version_3.html
+            [type] => text/html
+            [tmp_name] => /tmp/phpp8l7evfrk1nt6tJtRFo
+            [error] => 0
+            [size] => 20612
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/TOOLS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/TOOLS
+Bereinigt: 2000/TOOLS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/TOOLS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/TOOLS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => version_4.html
+            [full_path] => version_4.html
+            [type] => text/html
+            [tmp_name] => /tmp/phpoe8ma5dbum7jcBcin8J
+            [error] => 0
+            [size] => 40967
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/TOOLS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/TOOLS
+Bereinigt: 2000/TOOLS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/TOOLS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/TOOLS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => version_5.html
+            [full_path] => version_5.html
+            [type] => text/html
+            [tmp_name] => /tmp/phpc88a6c24dtko6ZIOYs3
+            [error] => 0
+            [size] => 44102
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/TOOLS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/TOOLS
+Bereinigt: 2000/TOOLS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/TOOLS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/TOOLS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => Tracklist HTML Generator.html
+            [full_path] => Tracklist HTML Generator.html
+            [type] => text/html
+            [tmp_name] => /tmp/phpqst42cscf98ranlH9Dv
+            [error] => 0
+            [size] => 13091
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/TOOLS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/TOOLS
+Bereinigt: 2000/TOOLS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/TOOLS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/TOOLS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+Upload-Anfrage erhalten:
+REQUEST_METHOD: POST
+FILES: Array
+(
+    [file] => Array
+        (
+            [name] => version_5.html
+            [full_path] => version_5.html
+            [type] => text/html
+            [tmp_name] => /tmp/phpd7714lmp3ks0bh7SUEL
+            [error] => 0
+            [size] => 49519
+        )
+
+)
+
+POST: Array
+(
+    [path] => 2000/TOOLS
+)
+
+TOKEN: 0000
+Pfadbereinigung:
+Original: 2000/TOOLS
+Bereinigt: 2000/TOOLS
+Zielverzeichnis:
+Target: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/TOOLS
+Uploads: /www/htdocs/w0062fc1/TuBox/WebDisk/uploads
+realpath(target): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads/2000/TOOLS
+realpath(uploads): /www/htdocs/w0062fc1/TuBox/WebDisk/uploads

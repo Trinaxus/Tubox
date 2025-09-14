@@ -1,0 +1,136 @@
+.galleryCard {
+  font-family: 'Poppins', sans-serif;
+  background: rgba(34, 36, 38, 0.98); /* modernes, kühles Grau wie project_martin */
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  border: 1px solid rgba(255, 107, 0, 0.1); /* Orange-Akzent */
+  transition: all 0.3s ease; /* Sanftere Transition für alle Eigenschaften */
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 320px;
+}
+
+.galleryCard:hover {
+  box-shadow: 0 16px 48px 0 rgba(255, 107, 0, 0.25), 0 4px 12px 0 rgba(0,0,0,0.2);
+  border-color: rgba(255, 107, 0, 0.5);
+  transform: translateY(-8px);
+  border-radius: 32px;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: #18181b;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  transition: filter 0.3s ease-in-out;
+}
+
+.blurredImage {
+  filter: blur(8px);
+}
+
+.passwordOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.passwordOverlay svg {
+  width: 48px;
+  height: 48px;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 8px rgba(0, 225, 255, 0.6));
+}
+
+.categoryTag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: linear-gradient(90deg, #00E1FF 0%, #E10091 100%);
+  color: #fff;
+  font-size: 0.85rem;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.14);
+}
+
+/* Passwort-Indikator (rot) */
+.passwordIndicator {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: rgba(255, 0, 0, 0.8);
+  color: white;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+
+/* Öffentlich-Indikator (grün) */
+.publicIndicator {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: rgba(0, 180, 0, 0.8);
+  color: white;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+
+.info {
+  padding: 20px 18px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.title {
+  color: #fff;
+  font-size: 1.18rem;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+  letter-spacing: 0.01em;
+}
+
+.subtitle {
+  color: #b4b4b4;
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+}

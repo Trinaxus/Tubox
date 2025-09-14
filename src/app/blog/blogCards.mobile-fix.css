@@ -1,0 +1,12 @@
+/* Mobile override for blog detail text color */
+@media (max-width: 600px) {
+  .blog-content,
+  .blog-content h1,
+  .blog-content h2,
+  .blog-content h3,
+  .blog-content p,
+  .blog-content li,
+  .blog-content a {
+    color: #e0e0e0 !important;
+  }
+}

@@ -1,0 +1,98 @@
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.description {
+  margin-bottom: 20px;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.button {
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.primaryButton {
+  background-color: #0070f3;
+  border-color: #0070f3;
+}
+
+.primaryButton:hover {
+  background-color: #0060df;
+}
+
+.button:hover {
+  background-color: #444;
+}
+
+.error {
+  padding: 15px;
+  background-color: rgba(255, 0, 0, 0.1);
+  border-left: 4px solid #ff0000;
+  margin-bottom: 20px;
+  color: #ff6b6b;
+}
+
+.success {
+  padding: 15px;
+  background-color: rgba(0, 255, 0, 0.1);
+  border-left: 4px solid #00ff00;
+  margin-bottom: 20px;
+  color: #7fff7f;
+}
+
+.link {
+  color: #0070f3;
+  text-decoration: underline;
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #444;
+}
+
+.tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #ccc;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+}
+
+.activeTab {
+  color: #fff;
+  border-bottom: 2px solid #0070f3;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  color: #ccc;
+}

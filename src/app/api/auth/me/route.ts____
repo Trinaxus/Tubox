@@ -1,0 +1,12 @@
+import { NextResponse } from "next/server";
+
+export async function GET() {
+  // Immer einen gültigen Admin-Benutzer zurückgeben
+  return NextResponse.json({
+    user: {
+      email: "trinax@gmx.de",
+      name: "Admin",
+      role: "admin"
+    }
+  });
+}

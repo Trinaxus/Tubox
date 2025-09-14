@@ -1,0 +1,66 @@
+.previewBox {
+  background: #18191d00;
+  color: #fff;
+  border-radius: 0px;
+  padding: 24px;
+  min-width: 340px;
+  max-width: 500px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0);
+  margin-right: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.previewHeader {
+  font-size: 32px;
+  margin-bottom: 24px;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.previewTitle {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.previewCover {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.previewExcerpt {
+  font-size: 16px;
+  color: #bbb;
+  margin-bottom: 10px;
+}
+
+.previewContent {
+  white-space: pre-line;
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.previewMeta {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.previewSeo {
+  font-size: 13px;
+  color: #666;
+  margin-top: 10px;
+}
+
+.previewDraft {
+  margin-top: 10px;
+  color: #ff9800;
+  font-weight: 600;
+}

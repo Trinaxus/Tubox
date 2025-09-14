@@ -1,0 +1,1568 @@
+/* Keine eigene Hintergrund-Animation nötig, wird vom Root-Layout bereitgestellt */
+
+.container {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  color: #fff;
+  background: transparent;
+  padding: 20px;
+}
+
+
+/* Galerie-Navigation */
+.galleryNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 30px auto;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* Kategorie-Filter */
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+  width: 100%;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.categories button {
+  padding: 8px 16px;
+  border: 1.5px solid transparent;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 4px;
+  transition: all 0.3s ease;
+}
+
+.categories button:hover {
+  background: rgba(255, 59, 48, 0.3); /* Deutlich sichtbarer roter Hintergrund */
+  border: 1.5px solid #ff3b30; /* Dickerer roter Rand für aktive Kategorie */
+  box-shadow: 0 0 20px rgb(255, 42, 0);
+}
+
+.categories button.active {
+  background: rgba(255, 59, 48, 0.3);
+  color: #fff;
+}
+
+.categories button:active {
+  transform: translateY(0);
+  transition: transform 0.1s ease;
+}
+
+@media (max-width: 768px) {
+  .categories {
+    gap: 8px;
+    padding: 8px 10px;
+    overflow-x: auto;
+    justify-content: flex-start;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .categories::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .categories button {
+    padding: 6px 16px;
+    font-size: 13px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
+
+.adminLink {
+  display: flex;
+  align-items: center;
+  color: #00e1ff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 2px solid #00e1ff;
+  background: rgba(0, 225, 255, 0.08);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+}
+
+.adminLink:hover {
+  background: rgba(0, 225, 255, 0.18);
+  color: #00e1ff;
+  border-color: #00e1ff;
+}
+
+.adminLink span {
+  margin-right: 6px;
+  color: #00e1ff;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsive Anpassungen für die Galerie-Übersicht */
+@media (max-width: 800px) {
+  .galleryGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    padding: 0 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .galleryGrid {
+    grid-template-columns: 1fr;
+    gap: px;
+    padding: 0 16px;
+    width: 100%;
+  }
+  .galleryCard {
+    width: 100%;
+    max-width: none;
+    margin: 0 0 20px 0;
+  }
+  .imageContainer {
+    width: 100%;
+    padding-top: 56.25%;
+  }
+  .container {
+    padding: 10px 0;
+  }
+}
+
+.galleryCard {
+  background: rgba(30, 30, 34, 0.8);
+  position: relative;
+  border: 1.5px solid rgba(255, 59, 48, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  backdrop-filter: blur(5px);
+  transform: translateZ(0);
+  will-change: transform, box-shadow, border-color;
+}
+
+/* Passwortgeschützte Galerie-Karten */
+.galleryCard[data-password-protected="true"] {
+  position: relative;
+}
+
+.galleryCard[data-password-protected="true"] .imageContainer {
+  filter: blur(8px);
+  opacity: 0.9;
+}
+
+.galleryCard[data-password-protected="true"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.galleryCard[data-password-protected="true"]::after {
+  display: none;
+}
+
+.galleryCard:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(255, 58, 48, 0.971);
+  border: 1.5px solid rgb(255, 58, 48);
+  background: rgba(79, 52, 49, 0.5);
+  z-index: 2;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover-Effekte für Framer Motion Ersatz - Diese werden jetzt von .galleryCard:hover übernommen */
+
+
+/* Die ursprünglichen Effekte wurden entfernt, um Konflikte zu vermeiden.
+   Alle Hover-Effekte werden jetzt von .galleryCard:hover gesteuert */
+
+/* Tag-Bubble für Galerie-Tags */
+/* Gemeinsame Stile für Bubbles */
+.tagBubble, .dateBubble {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 16px;
+  margin: 2px 4px 2px 0;
+  letter-spacing: 0.02em;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.tagBubble {
+  background: rgba(135, 107, 104, 0.25);
+  border: 0.5px solid rgba(135, 107, 104, 0);
+  color: #ffffff;
+}
+
+.dateBubble {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 10px;
+  opacity: 0.9;
+}
+
+.dateBubble:hover {
+  background: rgba(255, 59, 48, 0.3);
+  transform: translateY(0px);
+}
+
+.tagBubble:hover {
+  color: #fff;
+  border: 0.5px solid rgba(255, 59, 48, 0.3);
+}
+
+/* Kategorie-Tag */
+.categoryTag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--color-primary-300);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 47, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.galleryCard:hover .categoryTag {
+  background: rgba(0, 0, 0, 0.7);
+  border-color: rgba(255, 51, 0, 0.3);
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  padding-top: 66.67%; /* 3:2 Verhältnis */
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+  transition: all 0.3s ease;
+}
+
+/* Passwortgeschützte Bilder */
+.passwordProtectedImage {
+  filter: blur(15px) grayscale(100%) !important;
+  opacity: 0.7 !important;
+}
+
+.passwordProtectedContainer {
+  position: relative;
+}
+
+.passwordProtectedContainer::before {
+  content: "🔒";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36px;
+  z-index: 10;
+  color: white;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.passwordProtectedBadge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ff0000;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 12px;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.galleryCard:hover .imageContainer {
+  transform: scale(1.00);
+}
+
+.captionContainer {
+  padding: 0; /* Padding entfernen, da es die Ausrichtung beeinflussen kann */
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.galleryCard:hover .captionContainer {
+  background: rgba(0, 225, 255, 0.03);
+}
+
+.captionDetails {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 12px;
+  position: relative;
+  padding-top: 12px;
+}
+
+.captionDetails::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.5px;
+  background: linear-gradient(to right, rgb(255, 25, 0), rgb(255, 167, 167), rgba(255, 25, 0));
+  opacity: 0.5;
+}
+
+.title {
+  margin: 12px 16px 6px;
+  padding: 0;
+  font-size: 14px;
+  color: #fff;
+  font-weight: 400;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+  text-align: left;
+  width: 100%;
+  display: block;
+  opacity: 0.9;
+}
+
+.galleryCard:hover .title {
+  color: #ff3b30;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 16px 16px;
+  padding: 0;
+}
+
+.subtitle::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: #ff3b30;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.mediaCount {
+  font-size: 12px;
+  background-color: rgba(55, 65, 81, 0.6);
+  color: #b4b4b4;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+/* Hover-Effekt für mediaCount entfernt */
+
+.galleryInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.galleryCard:hover .subtitle {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.headerWithLogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.pageTitle {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+/* Kategorie-Filter */
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+
+/* Responsive Anpassungen für die Kategorien */
+@media (max-width: 768px) {
+  .categories {
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .categoryButton {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .categories {
+    gap: 8px;
+    margin-bottom: 15px;
+    padding: 5px 0;
+  }
+  
+  .categoryButton {
+    font-size: 12px;
+    padding: 6px 12px;
+    min-width: 80px;
+  }
+}
+
+
+
+.detailLogo {
+  width: 180px;
+  height: auto;
+  margin: 15px 0;
+}
+
+.backButton {
+  border: 1.5px solid transparent;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1.5px solid #fb000049;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 13px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.backButton:hover {
+  background: rgba(255, 59, 48, 0.3);
+  border: 1.5px solid #ff3b30;
+  box-shadow: 0 0 20px rgb(255, 42, 0);
+}
+
+.galleryTitle {
+  font-size: 28px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  color: var(--color-primary-400) !important;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.galleryTitle span {
+  color: var(--color-primary-400) !important;
+}
+
+.galleryHeader h1 {
+  color: var(--color-primary-400) !important;
+}
+
+.galleryHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+}
+
+.gallerySubtitle {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 6px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.accessTypeIcon {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Hover-Effekt für accessTypeIcon entfernt */
+
+.accessStatusContainer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.accessStatusIndicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 2px;
+}
+
+.statusUnlocked {
+  background-color: #22c55e;
+  box-shadow: 0 0 4px #22c55e;
+}
+
+.statusLocked {
+  background-color: #ef4444;
+  box-shadow: 0 0 4px #ef4444;
+}
+
+.imagesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Responsive Anpassungen für kleinere Bildschirme */
+@media (max-width: 768px) {
+  .imagesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .imagesGrid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding: 0 15px;
+  }
+  
+  .card {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .imageContainer {
+    padding-top: 66%; /* 3:2 Verhältnis für bessere Ansicht auf Mobilgeräten */
+  }
+}
+
+/* Einheitliches Grid für Galeriebilder */
+.detailGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-bottom: 120px; /* Abstand zum Footer */
+}
+
+
+/* Container für Bilder in der Detailansicht */
+.detailImageContainer {
+  position: relative;
+  padding-bottom: 60%; /* 5:3 Aspect Ratio */
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.videoIndicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--color-primary-300);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(0, 225, 255, 0.2);
+  z-index: 2;
+}
+
+.playButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(0, 225, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.playButton:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: rgba(0, 225, 255, 0.2);
+  border-color: rgba(0, 225, 255, 0.5);
+}
+
+.playIcon {
+  color: white;
+  font-size: 24px;
+  margin-left: 5px;
+}
+
+.bottomNavContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+/* Styles für die Zugriffstyp-Icons */
+.accessTypeContainer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.accessTypeIcon {
+  position: relative;
+  cursor: help;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.accessTypePublic {
+  background-color: rgba(74, 222, 128, 0.2);
+  color: #4ade80;
+}
+
+.accessTypePassword {
+  background-color: rgba(236, 72, 153, 0.2);
+  color: #ec4899;
+}
+
+.accessTypeInternal {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+/* Responsive Anpassungen für die Detailansicht */
+@media (max-width: 768px) {
+  .detailGrid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .detailGrid {
+    grid-template-columns: 1fr; /* Eine Spalte für Mobilgeräte */
+    gap: 20px;
+    padding: 0 5px;
+    width: 100%;
+  }
+  
+  .imageCard {
+    width: 100%;
+    max-width: none;
+    margin: 0 0 15px 0;
+    border-radius: 0;
+  }
+  
+  .imageCard img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain;
+  }
+  
+  .galleryHeader {
+    margin-bottom: 15px;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .galleryTitle {
+    font-size: 22px;
+  }
+  
+  .backButton {
+    margin: 0 auto 15px auto;
+    width: auto;
+    min-width: 120px;
+    padding: 10px 20px;
+    border-radius: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.imageCard {
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  margin-bottom: 0;
+  border-radius: 15px;
+  border: 1.5px solid #ff3a307a;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.imageCard:hover {
+  transform: scale(1.02);
+  border: 1.5px solid #ff3b30;
+  box-shadow: 0 0 20px rgb(255, 42, 0);
+  z-index: 2;
+}
+
+
+.categoryButton {
+  padding: 8px 16px;
+  border: 1.5px solid transparent;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 8px;
+  transition: all 0.3s ease;
+}
+
+.categoryButton:hover {
+  background: rgba(255, 59, 48, 0.3); /* Deutlich sichtbarer roter Hintergrund */
+  border: 1.5px solid #ff3b30; /* Dickerer roter Rand für aktive Kategorie */
+  box-shadow: 0 0 20px rgb(255, 42, 0);
+}
+
+/* Filter-Styles wurden in globals-gallery.css verschoben */
+
+
+/* Aktiver Indikator wird nicht mehr benötigt */
+
+/* Lightbox Styles */
+.lightboxOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.95); /* Dunklerer Hintergrund */
+  backdrop-filter: blur(15px); /* Stärkerer Blur-Effekt */
+  -webkit-backdrop-filter: blur(15px);
+  z-index: 9999; /* Höherer z-index, um sicherzustellen, dass es über allem liegt */
+  animation: fadeIn 0.3s ease;
+}
+
+.lightbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lightboxImageContainer {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  max-width: 1200px;
+  max-height: 800px;
+  border-radius: 8px;
+  overflow: hidden;
+  animation: scaleIn 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Fensterfüllende Darstellung auf mobilen Geräten */
+@media (max-width: 768px) {
+  .lightboxImageContainer {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 0;
+  }
+}
+
+/* Swipe-Indikatoren für mobile Geräte */
+.lightboxImageContainer::before,
+.lightboxImageContainer::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  display: none; /* Standard ausgeblendet, nur auf Mobilgeräten anzeigen */
+}
+
+.lightboxImageContainer::before {
+  left: 10px;
+  transform: translateY(-50%);
+  clip-path: polygon(40% 0%, 40% 100%, 0% 50%);
+}
+
+.lightboxImageContainer::after {
+  right: 10px;
+  transform: translateY(-50%);
+  clip-path: polygon(60% 0%, 60% 100%, 100% 50%);
+}
+
+/* Zeige Swipe-Indikatoren nur auf Mobilgeräten an */
+@media (max-width: 768px) {
+  .lightboxImageContainer::before,
+  .lightboxImageContainer::after {
+    display: block;
+    animation: pulseIndicator 2s infinite;
+  }
+}
+
+@keyframes pulseIndicator {
+  0% { opacity: 0; }
+  50% { opacity: 0.7; }
+  100% { opacity: 0; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Gemeinsame Styles für Bilder und Videos in der Lightbox */
+.lightboxImage {
+  object-fit: contain;
+  border-radius: 8px;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+/* Fensterfüllende Bilder auf mobilen Geräten */
+@media (max-width: 768px) {
+  .lightboxImage {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+  
+  /* Bei Bildern mit fill-Attribut (Next.js Image) */
+  div.lightboxImageContainer > span {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+/* Spezifische Styles für Videos in der Lightbox */
+/* Gallery Detail Styles */
+.galleryDetail {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.galleryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+/* Video Container */
+.videoContainer {
+  width: 100%;
+  margin: 20px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Image Wrapper */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  margin: 20px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.detailImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.detailImage:hover {
+  transform: scale(1.02);
+}
+
+/* Lightbox Styles */
+.lightboxContent {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  margin: 0 auto;
+}
+
+.closeLightbox {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Video Styles */
+video.lightboxImage {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Fensterfüllende Videos auf mobilen Geräten */
+@media (max-width: 768px) {
+  video.lightboxImage {
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    object-fit: contain;
+    margin: 0;
+    border-radius: 0;
+  }
+}
+
+/* Verbesserte Video-Kontrollelemente */
+video.lightboxImage::-webkit-media-controls {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+video.lightboxImage::-webkit-media-controls-panel {
+  padding: 0 10px;
+}
+
+/* Markanter, animierter Exit-Button */
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(220, 20, 20, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 1010;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: none;
+  animation: none;
+}
+
+/* Anpassungen für mobile Geräte */
+@media (max-width: 768px) {
+  .closeButton {
+    top: 15px;
+    right: 15px;
+    width: 56px;
+    height: 56px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    animation: none;
+    z-index: 1050; /* Höherer z-index für mobile Geräte */
+  }
+  
+  .closeIcon {
+    font-size: 32px;
+    font-weight: 400;
+  }
+}
+
+/* Spezielle Pulsanimation für mobile Geräte */
+@keyframes pulseExitMobile {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.8);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.5);
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+    transform: scale(1);
+  }
+}
+
+/* Hover-Effekt für den Exit-Button */
+.closeButton:hover {
+  background: rgba(255, 0, 0, 0.9);
+  transform: scale(1.15) rotate(90deg);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.closeIcon {
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 300;
+  transform: rotate(45deg);
+  display: block;
+}
+
+/* Pulsanimation für den Exit-Button */
+@keyframes pulseExit {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+  }
+}
+
+/* Navigationsbuttons in der Lightbox */
+.navigationButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 1010;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Anpassungen für mobile Geräte */
+@media (max-width: 768px) {
+  .navigationButton {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    background: rgba(0, 0, 0, 0.4);
+    top: auto;
+    bottom: 20px;
+    transform: none;
+  }
+  
+  .prevButton {
+    left: 20px;
+  }
+  
+  .nextButton {
+    right: 20px;
+  }
+  
+  /* Angepasster Hover-Zustand für mobile Geräte */
+  .navigationButton:hover {
+    transform: scale(1.1);
+  }
+}
+
+.prevButton {
+  left: 20px;
+}
+
+.nextButton {
+  right: 20px;
+}
+
+/* Hover-Zustand für Navigationsbuttons */
+.navigationButton:hover {
+  background: rgba(0, 247, 255, 0.3);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 247, 255, 0.2);
+  border-color: rgba(0, 247, 255, 0.4);
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1010;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.2s ease;
+}
+
+.navButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.imageCounter {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Zusätzliche Klassen für Inline-Styles */
+.objectFitCover {
+  object-fit: cover;
+}
+
+.fullWidthImageContainer {
+  width: 100%;
+  height: 180px;
+  position: relative;
+}
+
+.passwordProtectionInfo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.passwordIcon {
+  font-size: 16px;
+  color: #ff6b00;
+  margin-right: 4px;
+}
+
+.textShadow {
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.noPointerEvents {
+  pointer-events: none;
+}
+
+.orangeShadow {
+  box-shadow: 0 2px 4px rgba(255, 107, 0, 0.3);
+}
+
+/* Passwort-Popup Styles */
+.passwordOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background-color: transparent;
+}
+
+.passwordPopupContainer {
+  position: fixed;
+  z-index: 50;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  max-width: 90%;
+}
+
+.passwordPopup {
+  background-color: #1a1b20;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 225, 255, 0.15);
+  color: white;
+  border: 1px solid rgba(0, 225, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.passwordHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.passwordTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.passwordInputContainer {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.passwordInput {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: white;
+  transition: all 0.2s ease;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.passwordInput:focus {
+  outline: none;
+  border-color: rgba(0, 225, 255, 0.5);
+  box-shadow: 0 0 0 1px rgba(0, 225, 255, 0.2), inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.passwordIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Filter-Container und Buttons */
+.galleryFilterContainer {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-bottom: 20px !important;
+  padding: 0 20px !important;
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.galleryFilterButton {
+  padding: 8px 16px !important;
+  border: 1.5px solid transparent !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #fff !important;
+  cursor: pointer !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
+  border-radius: 16px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.galleryFilterButton:hover {
+  background: rgba(255, 59, 48, 0.3) !important;
+  border: 1.5px solid #ff3b30 !important;
+  box-shadow: 0 0 20px rgb(255, 42, 0) !important;
+}
+
+.galleryFilterButtonActive {
+  background: rgba(255, 59, 48, 0.3) !important;
+  border: 1.5px solid #ff3b30 !important;
+  color: #fff !important;
+  box-shadow: 0 0 20px rgb(255, 42, 0) !important;
+}
+
+.galleryFilterCount {
+  font-size: 0.8em !important;
+  opacity: 0.8 !important;
+  margin-left: 2px !important;
+}
+
+.passwordError {
+  color: #ff6b6b;
+  font-size: 12px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.passwordActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.cancelButton {
+  padding: 8px 16px;
+  font-size: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: none;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancelButton:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.unlockButton {
+  padding: 8px 16px;
+  font-size: 13px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(to right, rgba(0, 225, 255, 0.8), rgba(255, 105, 180, 0.8));
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.unlockButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Loading Spinner Styles */
+.loadingContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 50;
+}
+
+.loadingText {
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+  margin-top: 24px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 59, 48, 0.2);
+  border-radius: 50%;
+  border-top-color: #ff3b30;
+  animation: spin 3s ease-in-out infinite, pulse 3s ease-in-out infinite;
+  box-shadow: 0 0 15px rgba(255, 59, 48, 0.5);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1) rotate(0deg);
+    box-shadow: 0 0 15px rgba(255, 59, 48, 0.5);
+  }
+  50% {
+    transform: scale(1.1) rotate(180deg);
+    box-shadow: 0 0 25px rgba(255, 59, 48, 0.8);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    box-shadow: 0 0 15px rgba(255, 59, 48, 0.5);
+  }
+}

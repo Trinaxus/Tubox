@@ -1,0 +1,58 @@
+<?php
+// file_operations.php — API für Dateioperationen (Listen, Löschen)
+header('Content-Type: application/json');
+
+// Authentifizierung
+$token = $_SERVER['HTTP_X_API_TOKEN'] ?? '';
+$validToken = getenv('FILE_OPERATIONS_TOKEN') ?: '0000';
+if ($token !== $validToken) {
+    http_response_code(401);
+    echo json_encode(['error' => 'Unauthorized']);
+    exit;
+}
+
+$uploadsDir = realpath(__DIR__ . '/../uploads');
+if (!$uploadsDir) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Uploads directory not found']);
+    exit;
+}
+
+$action = $_GET['action'] ?? $_POST['action'] ?? '';
+
+switch ($action) {
+    case 'list':
+        $year = preg_replace('/[^0-9]/', '', $_GET['year'] ?? date('Y'));
+        $gallery = preg_replace('/[^a-zA-Z0-9_-]/', '', $_GET['gallery'] ?? 'default');
+        $dir = "$uploadsDir/$year/$gallery";
+        if (!is_dir($dir)) {
+            echo json_encode(['files' => []]);
+            exit;
+        }
+        $files = array_values(array_filter(scandir($dir), function($f) use ($dir) {
+            return is_file("$dir/$f") && $f[0] !== '.';
+        }));
+        echo json_encode(['files' => $files]);
+        break;
+    case 'delete':
+        $year = preg_replace('/[^0-9]/', '', $_POST['year'] ?? date('Y'));
+        $gallery = preg_replace('/[^a-zA-Z0-9_-]/', '', $_POST['gallery'] ?? 'default');
+        $filename = basename($_POST['filename'] ?? '');
+        $file = "$uploadsDir/$year/$gallery/$filename";
+        if (is_file($file)) {
+            if (unlink($file)) {
+                echo json_encode(['success' => true]);
+            } else {
+                http_response_code(500);
+                echo json_encode(['error' => 'Delete failed']);
+            }
+        } else {
+            http_response_code(404);
+            echo json_encode(['error' => 'File not found']);
+        }
+        break;
+    default:
+        http_response_code(400);
+        echo json_encode(['error' => 'Invalid or missing action']);
+        break;
+}

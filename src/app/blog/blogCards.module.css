@@ -1,0 +1,365 @@
+/* Blog Cards: eigenes, modernes und responsives Card-Design für Blog-Übersicht */
+
+/* Blog Header Styles */
+.blogHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  /* Hier können Sie die Höhe des Headers anpassen */
+  min-height: 120px; /* Minimale Höhe des Headers */
+  padding-top: 30px; /* Abstand oben */
+  padding-bottom: 20px; /* Abstand unten */
+}
+
+.blogPageTitle {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--color-primary-500, #00e1ff);
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.active {
+  background-color: var(--color-primary-500, #00e1ff);
+  color: #000;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 5px 10px;
+  transition: all 0.2s ease;
+}
+
+.blogPageSubtitle {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .blogPageTitle {
+    font-size: 28px;
+  }
+  
+  .blogPageSubtitle {
+    font-size: 14px;
+  }
+}
+
+.blogBackButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 17px;
+  font-weight: 400;
+  color: #ffffff;
+  background: rgba(0,225,255,0.07);
+  border: 1px solid #ff19004f;
+  border-radius: 17px;
+  padding: 0.3rem 0.8rem;
+  margin-bottom: 15px;
+  margin-left: 0;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 225, 255, 0);
+  transition: background 0.18s, color 0.18s, border 0.18s;
+}
+
+.blogBackButton:hover {
+  background: #ff3b304d;     
+  color: #fff;
+  border: 1px solid #ff3b30;
+  box-shadow: 0 0 20px rgba(255, 42, 0, 0.843);
+}
+
+.blogGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 340px));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+  justify-content: center;
+}
+
+.blogCard {
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(30, 30, 34, 0);
+  position: relative;
+  border: 1.5px solid   #ff3b304d !important;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(255, 42, 0, 0) !important;
+  overflow: hidden !important;
+  transition: box-shadow 0.25s, transform 0.4s cubic-bezier(0.4,0,0.2,1), border-color 0.25s, opacity 0.4s cubic-bezier(0.4,0,0.2,1);
+  will-change: transform, opacity, box-shadow, border-color;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.blogCardLine {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, rgb(255, 13, 0), rgb(255, 157, 101), rgb(255, 13, 0));
+  opacity: 0.5;
+  margin: 8px 0 16px 0;
+  border: none;
+  display: block;
+}
+
+
+.blogCard:hover {
+  box-shadow: 0 0px 20px rgba(  255, 42, 0, 0.324) !important;
+  border: 1.5px solid rgba(255, 42, 0, 0.422) !important;
+  background: rgba(48, 37, 36, 0.525);
+  box-shadow: 0 0 15px rgba(255, 42, 0, 0.184), 0 0 0 0px rgba(255, 42, 0, 0.184) !important;
+  transform: translateY(-1px) !important;
+}
+
+.blogImageContainer {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background: rgba(51, 51, 51, 0.1);
+  position: relative;
+  overflow: hidden;
+  display: block;
+  padding-top: 66.67%
+}
+
+
+/* Entferne alle Media Queries, die height/min-height/max-height für .blogImageContainer setzen */
+
+/* Entferne die Hilfsklasse .aspect-5-3 */
+
+
+.blogImage {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background: #1a1b20;
+  border-radius: 0;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@media (max-width: 900px) {
+  .blogImageContainer {
+    aspect-ratio: 3 / 2;
+    width: 100%;
+    height: auto;
+    min-height: unset;
+    max-height: unset;
+  }
+}
+
+@media (max-width: 600px) {
+  .blogImageContainer {
+    aspect-ratio: 3 / 2;
+    width: 100%;
+    height: auto;
+    min-height: unset;
+    max-height: unset;
+  }
+}
+
+/* Blog Categories Filter */
+.blogCategories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 30px;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.blog-filter-button {
+  padding: 8px 16px;
+  border: 1.5px solid transparent;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 8px;
+  transition: all 0.3s ease;
+}
+
+.blog-filter-button:hover {
+  background: rgba(255, 59, 48, 0.3); /* Deutlich sichtbarer roter Hintergrund */
+  border: 1.5px solid #ff3b30; /* Dickerer roter Rand für aktive Kategorie */
+  box-shadow: 0 0 20px rgb(255, 42, 0);
+}
+
+.blog-filter-button.active {
+  background: rgba(255, 59, 48, 0.3); /* Deutlich sichtbarer roter Hintergrund */
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 225, 255, 0);
+}
+
+.blogContent {
+  padding: 22px 22px 16px 22px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 170px;
+  height: 100%;
+}
+
+.blogMetaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.blogTag {
+  background: #ff2f0020;
+  color: #c6c6c6;
+  border-radius: 16px;
+  font-size: 12px;
+  padding: 0 11px; /* Padding nur horizontal */
+  font-weight: 500;
+  margin-right: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #f6777783;
+  height: 24px;
+  line-height: 24px; /* Gleich der Höhe setzen */
+  box-sizing: border-box;
+  vertical-align: middle;
+  position: relative;
+  top: +1px; /* Feinjustierung falls nötig */
+}
+
+.blogAuthor {
+  background: rgba(191, 255, 0, 0.153);
+  color: #fff;
+  border-radius: 12px;
+  font-size: 13px;
+  padding: 2px 11px;
+  font-weight: 500;
+  margin-right: 2px;
+  margin-bottom: 2px;
+  display: inline-block;
+  border: 1px solid rgba(187, 255, 0, 0.258);
+}
+
+.blogDate {
+  background: rgba(255, 105, 180, 0.153);
+  color: #fff;
+  border-radius: 12px;
+  font-size: 13px;
+  padding: 2px 11px;
+  font-weight: 500;
+  margin-right: 2px;
+  margin-bottom: 2px;
+  display: inline-block;
+  border: 1px solid #ff69b451;
+}
+
+.blogReadMore:hover {
+  background: #00ddff3e;
+  color: #fff;
+  border: 0.5px solid #00ffe14f;
+  box-shadow: 0 0px 12px rgba(0, 225, 255, 0);
+}
+
+.blogTitle {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--color-primary-500, #ffffff);
+  letter-spacing: 0.01em;
+}
+
+.blogMeta {
+  color: #bbb;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.blogExcerpt {
+  color: #e0e0e0;
+  font-size: 16px;
+  margin-bottom: 18px;
+  min-height: 40px;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.blogReadMore {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8px 16px;
+  border: 1.5px solid transparent;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 8px;
+  transition: all 0.3s ease;
+}
+
+
+.blogReadMore:hover {
+  background: rgba(255, 59, 48, 0.3); /* Deutlich sichtbarer roter Hintergrund */
+  border: 1.5px solid #ff3b30; /* Dickerer roter Rand für aktive Kategorie */
+  box-shadow: 0 0 15px rgb(255, 42, 0);
+}
+
+@media (max-width: 800px) {
+  .blogGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    padding: 0 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .blogGrid {
+    grid-template-columns: 1fr;
+    gap: 0px;
+    padding: 0 0px;
+  }
+  .blogCard {
+    width: 100%;
+    max-width: none;
+    margin: 0 0 20px 0;
+  }
+  .blogImageContainer {
+    aspect-ratio: 3 / 2;
+    width: 100%;
+    height: auto;
+    min-height: unset;
+    max-height: unset;
+  }
+}

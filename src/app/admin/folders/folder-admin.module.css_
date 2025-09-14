@@ -1,0 +1,32 @@
+.folder-list-item {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 12px 0;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 2px 8px;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+  outline: none;
+}
+.folder-list-item:hover,
+.folder-list-item:focus {
+  background: rgba(0,225,255,0.08);
+  color: var(--color-primary-500);
+}
+.folder-list-item.selected,
+.folder-list-item[aria-selected="true"] {
+  background: linear-gradient(90deg, rgba(0,225,255,0.18) 0%, rgba(0,225,255,0.10) 100%);
+  color: var(--color-primary-500);
+  box-shadow: 0 0 0 2px var(--color-primary-500) inset;
+}
+.folder-list-item:active {
+  background: rgba(0,225,255,0.22);
+}
+.folder-icon {
+  font-size: 24px;
+  margin-right: 8px;
+}
+.folder-label {
+  user-select: none;
+  vertical-align: middle;
+}

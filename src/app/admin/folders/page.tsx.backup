@@ -1,0 +1,873 @@
+"use client";
+import React, { useState, useEffect, useRef } from "react";
+import styles from "../admin.module.css";
+import AdminNav from "../AdminNav";
+import { Folder, File, ChevronRight, ChevronDown, MoreHorizontal, Edit, Trash2, FolderPlus, Loader2, AlertCircle, X, Upload, Move, FolderUp } from 'lucide-react';
+
+// Umgebungsvariablen definieren
+// Direkte Konfiguration für Debugging-Zwecke
+const FILE_OPERATIONS_API = process.env.NEXT_PUBLIC_FILE_OPERATIONS_API || "https://tubox.de/WebDisk/api/file_operations.php";
+const FILE_OPERATIONS_TOKEN = process.env.NEXT_PUBLIC_FILE_OPERATIONS_TOKEN || "0000";
+
+// Debug-Ausgabe der Umgebungsvariablen
+console.log('DEBUG - Umgebungsvariablen:', { 
+  FILE_OPERATIONS_API, 
+  FILE_OPERATIONS_TOKEN: FILE_OPERATIONS_TOKEN ? '***' : 'nicht gesetzt' 
+});
+
+// Typen
+interface FileNode {
+  name: string;
+  type: "file" | "directory" | "folder";
+  children?: FileNode[];
+  size?: number;
+  path?: string;
+}
+
+interface ApiResponse {
+  success?: boolean;
+  error?: string;
+  message?: string;
+  deleted?: string;
+  created?: string;
+}
+
+// Mobile Action Bar Komponente
+const MobileActionBar: React.FC<{
+  selectedItem: FileNode | null;
+  onNewFolder: () => void;
+  onRename: () => void | null;
+  onDelete: () => void | null;
+  onMove: () => void | null;
+}> = ({ selectedItem, onNewFolder, onRename, onDelete, onMove }) => {
+  if (!selectedItem) return null;
+  
+  return (
+    <div className="fixed bottom-4 left-0 right-0 z-40 flex justify-center px-4 md:hidden">
+      <div className="bg-[var(--color-bg-panel)] rounded-full shadow-lg flex items-center p-1.5 space-x-1">
+        <button
+          onClick={onRename}
+          className="p-2.5 rounded-full bg-[var(--color-bg-secondary)] hover:bg-[var(--color-bg-hover)] transition-colors"
+          aria-label="Umbenennen"
+        >
+          <Edit size={20} className="text-gray-300" />
+        </button>
+        
+        <button
+          onClick={onMove}
+          className="p-2.5 rounded-full bg-[var(--color-bg-secondary)] hover:bg-[var(--color-bg-hover)] transition-colors"
+          aria-label="Verschieben"
+        >
+          <Move size={20} className="text-gray-300" />
+        </button>
+        
+        <button
+          onClick={onNewFolder}
+          className="p-2.5 rounded-full bg-[var(--color-bg-secondary)] hover:bg-[var(--color-bg-hover)] transition-colors"
+          aria-label="Neuer Unterordner"
+        >
+          <FolderPlus size={20} className="text-gray-300" />
+        </button>
+        
+        <button
+          onClick={onDelete}
+          className="p-2.5 rounded-full bg-[var(--color-bg-secondary)] hover:bg-[var(--color-bg-hover)] transition-colors"
+          aria-label="Löschen"
+        >
+          <Trash2 size={20} className="text-red-400" />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+// FolderItem Komponente
+const FolderItem: React.FC<{
+  item: FileNode;
+  path: string;
+  isSelected: boolean;
+  onSelect: (item: FileNode, path: string) => void;
+  onToggle: (path: string) => void;
+  isOpen: boolean;
+  level: number;
+  expandedFolders: Set<string>;
+}> = ({ item, path, isSelected, onSelect, onToggle, isOpen, level, expandedFolders }) => {
+  const fullPath = `${path}/${item.name}`;
+  const isFolder = item.type === 'folder' || item.type === 'directory';
+  const hasChildren = isFolder && item.children && item.children.length > 0;
+  
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onSelect(item, fullPath);
+    if (isFolder && hasChildren) {
+      onToggle(fullPath);
+    }
+  };
+  
+  const formatFileSize = (size?: number): string => {
+    if (size === undefined) return '';
+    if (size < 1024) return `${size} B`;
+    if (size < 1024 * 1024) return `${(size / 1024).toFixed(1)} KB`;
+    if (size < 1024 * 1024 * 1024) return `${(size / (1024 * 1024)).toFixed(1)} MB`;
+    return `${(size / (1024 * 1024 * 1024)).toFixed(1)} GB`;
+  };
+  
+  return (
+    <div className="folder-tree-item">
+      <div 
+        className={`flex items-center p-2 rounded-md cursor-pointer hover:bg-[var(--color-bg-hover)] ${isSelected ? 'bg-[var(--color-bg-selected)]' : ''}`}
+        onClick={handleClick}
+        style={{ paddingLeft: `${level * 16 + 8}px` }}
+      >
+        <div className="w-6 flex justify-center">
+          {isFolder && hasChildren ? (
+            isOpen ? (
+              <ChevronDown size={16} className="text-gray-400" />
+            ) : (
+              <ChevronRight size={16} className="text-gray-400" />
+            )
+          ) : (
+            <span className="w-4"></span>
+          )}
+        </div>
+        
+        <div className="mr-2">
+          {isFolder ? (
+            <Folder size={18} className="text-[var(--color-primary-500)]" />
+          ) : (
+            <File size={18} className="text-gray-400" />
+          )}
+        </div>
+        
+        <span className="truncate">{item.name}</span>
+        
+        {item.type === 'file' && item.size !== undefined && (
+          <span className="ml-auto text-xs text-gray-400">
+            {formatFileSize(item.size)}
+          </span>
+        )}
+        
+        {/* Mobile action button */}
+        <button 
+          className="p-1.5 rounded-full bg-[var(--color-bg-secondary)]/50 hover:bg-[var(--color-bg-hover)] ml-auto md:hidden"
+          onClick={(e) => {
+            e.stopPropagation();
+            onSelect(item, fullPath);
+          }}
+        >
+          <MoreHorizontal size={16} className="text-gray-300" />
+        </button>
+      </div>
+      
+      {isFolder && isOpen && item.children && (
+        <div className="folder-children">
+          {item.children.map((child, index) => (
+            <FolderItem
+              key={`${fullPath}/${child.name}`}
+              item={child}
+              path={fullPath}
+              isSelected={false}
+              onSelect={onSelect}
+              onToggle={onToggle}
+              isOpen={expandedFolders.has(`${fullPath}/${child.name}`)}
+              level={level + 1}
+              expandedFolders={expandedFolders}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+// Dialog-Komponenten
+const NewFolderDialog: React.FC<{
+  onClose: () => void;
+  onConfirm: (parentPath: string, folderName: string) => void;
+  parentPath: string;
+}> = ({ onClose, onConfirm, parentPath }) => {
+  const [folderName, setFolderName] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!folderName.trim()) return;
+    
+    setIsSubmitting(true);
+    onConfirm(parentPath, folderName.trim());
+  };
+  
+  return (
+    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg p-6 w-full max-w-md">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-semibold">Neuer Ordner</h2>
+          <button onClick={onClose} className="p-1 rounded-full hover:bg-gray-100">
+            <X size={20} />
+          </button>
+        </div>
+        
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label htmlFor="folderName" className="block mb-2 text-sm font-medium text-gray-700">
+              Ordnername
+            </label>
+            <input
+              type="text"
+              id="folderName"
+              value={folderName}
+              onChange={(e) => setFolderName(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-[var(--color-primary-500)] focus:border-transparent"
+              placeholder="Neuer Ordner"
+              autoFocus
+            />
+          </div>
+          
+          <div className="flex justify-end space-x-2">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 border border-gray-300 rounded hover:bg-gray-100"
+            >
+              Abbrechen
+            </button>
+            <button
+              type="submit"
+              disabled={!folderName.trim() || isSubmitting}
+              className="px-4 py-2 bg-[var(--color-primary-500)] text-white rounded hover:bg-[var(--color-primary-600)] disabled:opacity-50"
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 size={16} className="animate-spin inline mr-2" />
+                  Erstelle...
+                </>
+              ) : (
+                'Erstellen'
+              )}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+const RenameDialog: React.FC<{
+  item: FileNode;
+  onClose: () => void;
+  onConfirm: (path: string, newName: string) => void;
+  path: string;
+}> = ({ item, onClose, onConfirm, path }) => {
+  const [newName, setNewName] = useState(item.name);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newName.trim() || newName === item.name) return;
+    
+    setIsSubmitting(true);
+    onConfirm(path, newName.trim());
+  };
+  
+  return (
+    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg p-6 w-full max-w-md">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-semibold">Umbenennen</h2>
+          <button onClick={onClose} className="p-1 rounded-full hover:bg-gray-100">
+            <X size={20} />
+          </button>
+        </div>
+        
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label htmlFor="newName" className="block mb-2 text-sm font-medium text-gray-700">
+              Neuer Name
+            </label>
+            <input
+              type="text"
+              id="newName"
+              value={newName}
+              onChange={(e) => setNewName(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-[var(--color-primary-500)] focus:border-transparent"
+              autoFocus
+            />
+          </div>
+          
+          <div className="flex justify-end space-x-2">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 border border-gray-300 rounded hover:bg-gray-100"
+            >
+              Abbrechen
+            </button>
+            <button
+              type="submit"
+              disabled={!newName.trim() || newName === item.name || isSubmitting}
+              className="px-4 py-2 bg-[var(--color-primary-500)] text-white rounded hover:bg-[var(--color-primary-600)] disabled:opacity-50"
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 size={16} className="animate-spin inline mr-2" />
+                  Speichern...
+                </>
+              ) : (
+                'Speichern'
+              )}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+const DeleteConfirmDialog: React.FC<{
+  item: FileNode;
+  onClose: () => void;
+  onConfirm: () => void;
+  path: string;
+}> = ({ item, onClose, onConfirm, path }) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const handleConfirm = () => {
+    setIsSubmitting(true);
+    onConfirm();
+  };
+  
+  return (
+    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg p-6 w-full max-w-md">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-semibold">Löschen bestätigen</h2>
+          <button onClick={onClose} className="p-1 rounded-full hover:bg-gray-100">
+            <X size={20} />
+          </button>
+        </div>
+        
+        <div className="mb-6">
+          <p className="mb-2">
+            Möchten Sie wirklich "{item.name}" löschen?
+          </p>
+          {item.type === 'folder' || item.type === 'directory' ? (
+            <p className="text-red-600 text-sm">
+              Achtung: Alle Dateien und Unterordner werden ebenfalls gelöscht!
+            </p>
+          ) : null}
+        </div>
+        
+        <div className="flex justify-end space-x-2">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 border border-gray-300 rounded hover:bg-gray-100"
+          >
+            Abbrechen
+          </button>
+          <button
+            onClick={handleConfirm}
+            disabled={isSubmitting}
+            className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50"
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 size={16} className="animate-spin inline mr-2" />
+                Lösche...
+              </>
+            ) : (
+              'Löschen'
+            )}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default function FolderAdminPage() {
+  // State für die Ordnerstruktur und UI
+  const [folderStructure, setFolderStructure] = useState<FileNode[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [selectedItem, setSelectedItem] = useState<FileNode | null>(null);
+  const [selectedPath, setSelectedPath] = useState<string | null>(null);
+  const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set());
+  const [isUploading, setIsUploading] = useState<boolean>(false);
+  const [uploadProgress, setUploadProgress] = useState<number>(0);
+  
+  // Refs
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  
+  // State für Dialoge
+  const [showNewFolderDialog, setShowNewFolderDialog] = useState<boolean>(false);
+  const [showRenameDialog, setShowRenameDialog] = useState<boolean>(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState<boolean>(false);
+  
+  // Lade die Ordnerstruktur beim ersten Rendern
+  useEffect(() => {
+    fetchFolderStructure();
+  }, []);
+  
+  // API-Funktion zum Laden der Ordnerstruktur
+  const fetchFolderStructure = async () => {
+    setIsLoading(true);
+    setError(null);
+    
+    console.log('DEBUG - API-Konfiguration:', { 
+      url: FILE_OPERATIONS_API, 
+      token_length: FILE_OPERATIONS_TOKEN.length
+    });
+    
+    try {
+      // Versuche direkt mit dem einfachsten Ansatz
+      const response = await fetch(`${FILE_OPERATIONS_API}?action=list`, {
+        method: 'GET',
+        headers: {
+          'X-API-TOKEN': FILE_OPERATIONS_TOKEN
+        }
+      });
+      
+      console.log('DEBUG - API-Antwort Status:', response.status, response.statusText);
+      
+      if (!response.ok) {
+        throw new Error(`Fehler beim Laden der Ordnerstruktur: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      console.log('DEBUG - API-Antwort Daten:', typeof data, Array.isArray(data) ? 'Array' : 'Objekt');
+      
+      if (Array.isArray(data)) {
+        setFolderStructure(data);
+      } else if (data && typeof data === 'object') {
+        if (data.success && Array.isArray(data.folders)) {
+          setFolderStructure(data.folders);
+        } else if (data.files && Array.isArray(data.files)) {
+          // Konvertiere das files-Array in das erwartete Format
+          const convertedFiles = data.files.map((file: string) => ({
+            name: file,
+            type: 'file',
+            path: file
+          }));
+          setFolderStructure(convertedFiles);
+        } else {
+          setError('Unerwartetes Antwortformat: ' + JSON.stringify(data).substring(0, 100));
+        }
+      } else {
+        setError('Unerwarteter Datentyp: ' + typeof data);
+      }
+    } catch (err) {
+      setError(`Netzwerkfehler: ${err instanceof Error ? err.message : String(err)}`);
+      console.error('Fehler beim Laden der Ordnerstruktur:', err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
+  // Handler für die Auswahl eines Elements
+  const handleSelectItem = (item: FileNode, path: string) => {
+    setSelectedItem(item);
+    setSelectedPath(path);
+  };
+  
+  // Handler für das Aufklappen/Zuklappen eines Ordners
+  const handleToggleFolder = (path: string) => {
+    setExpandedFolders(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(path)) {
+        newSet.delete(path);
+      } else {
+        newSet.add(path);
+      }
+      return newSet;
+    });
+  };
+  
+  // Handler für Aktionen
+  const handleNewFolderClick = () => {
+    setShowNewFolderDialog(true);
+  };
+  
+  const handleRenameClick = () => {
+    if (selectedItem) {
+      setShowRenameDialog(true);
+    }
+  };
+  
+  const handleDeleteClick = () => {
+    if (selectedItem) {
+      setShowDeleteDialog(true);
+    }
+  };
+  
+  // Upload-Handler
+  const handleUploadClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+  
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0 || !selectedPath) return;
+    
+    setIsUploading(true);
+    setUploadProgress(0);
+    
+    try {
+      // Erstelle FormData für den Upload
+      const formData = new FormData();
+      formData.append('action', 'upload_files');
+      formData.append('path', selectedPath);
+      
+      // Füge alle ausgewählten Dateien hinzu
+      for (let i = 0; i < files.length; i++) {
+        formData.append('files[]', files[i]);
+      }
+      
+      // Sende die Dateien an den Server
+      const response = await fetch(FILE_OPERATIONS_API, {
+        method: 'POST',
+        headers: {
+          'X-API-TOKEN': FILE_OPERATIONS_TOKEN
+        },
+        body: formData
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Fehler beim Hochladen: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      if (data.success) {
+        // Aktualisiere die Ordnerstruktur nach erfolgreichem Upload
+        await fetchFolderStructure();
+      } else {
+        throw new Error(data.error || 'Unbekannter Fehler beim Hochladen');
+      }
+    } catch (err) {
+      console.error('Fehler beim Hochladen:', err);
+      setError(`Upload-Fehler: ${err instanceof Error ? err.message : String(err)}`);
+    } finally {
+      setIsUploading(false);
+      setUploadProgress(0);
+      
+      // Setze das Datei-Input-Feld zurück
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+    }
+  };
+  
+  // API-Funktionen für Ordneraktionen
+  const createFolder = async (parentPath: string, folderName: string) => {
+    try {
+      const response = await fetch(`${FILE_OPERATIONS_API}?action=create_folder`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-TOKEN': FILE_OPERATIONS_TOKEN
+        },
+        body: JSON.stringify({ path: parentPath, name: folderName })
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Fehler beim Erstellen des Ordners: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      return data.success;
+    } catch (err) {
+      console.error('Fehler beim Erstellen des Ordners:', err);
+      return false;
+    }
+  };
+  
+  const renameFolder = async (path: string, newName: string) => {
+    try {
+      // Debug-Ausgabe
+      console.log('DEBUG - Umbenennen:', { path, newName });
+      
+      // Extrahiere den Ordnernamen aus dem Pfad
+      const pathParts = path.split('/');
+      const oldName = pathParts.pop() || '';
+      const parentPath = pathParts.join('/');
+      
+      // Baue den neuen Pfad
+      const newPath = parentPath ? `${parentPath}/${newName}` : newName;
+      
+      console.log('DEBUG - Umbenennungsparameter:', { 
+        old: path, 
+        new: newPath,
+        oldName,
+        parentPath
+      });
+      
+      const response = await fetch(`${FILE_OPERATIONS_API}?action=rename_folder`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-TOKEN': FILE_OPERATIONS_TOKEN
+        },
+        body: JSON.stringify({ old: path, new: newPath })
+      });
+      
+      console.log('DEBUG - API-Antwort Status:', response.status, response.statusText);
+      
+      if (!response.ok) {
+        throw new Error(`Fehler beim Umbenennen: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      console.log('DEBUG - API-Antwort:', data);
+      return data.success;
+    } catch (err) {
+      console.error('Fehler beim Umbenennen:', err);
+      return false;
+    }
+  };
+  
+  const deleteItem = async (path: string) => {
+    try {
+      const response = await fetch(`${FILE_OPERATIONS_API}?action=delete_folder`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-TOKEN': FILE_OPERATIONS_TOKEN
+        },
+        body: JSON.stringify({ path })
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Fehler beim Löschen: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      return data.success;
+    } catch (err) {
+      console.error('Fehler beim Löschen:', err);
+      return false;
+    }
+  };
+  
+  // Handler für Dialog-Aktionen
+  const handleCreateFolder = async (parentPath: string, folderName: string) => {
+    setShowNewFolderDialog(false);
+    const success = await createFolder(parentPath, folderName);
+    
+    if (success) {
+      await fetchFolderStructure();
+    }
+  };
+  
+  const handleRenameFolder = async (path: string, newName: string) => {
+    setShowRenameDialog(false);
+    const success = await renameFolder(path, newName);
+    
+    if (success) {
+      await fetchFolderStructure();
+      setSelectedItem(null);
+      setSelectedPath(null);
+    }
+  };
+  
+  const handleDeleteFolder = async () => {
+    setShowDeleteDialog(false);
+    if (!selectedPath) return;
+    
+    const success = await deleteItem(selectedPath);
+    
+    if (success) {
+      await fetchFolderStructure();
+      setSelectedItem(null);
+      setSelectedPath(null);
+    }
+  };
+  
+  // Render-Funktion für die Ordnerstruktur
+  const renderFolderTree = (nodes: FileNode[]) => {
+    if (!nodes || nodes.length === 0) {
+      return (
+        <div className="p-4 text-center text-gray-400">
+          <p>Keine Ordner oder Dateien gefunden.</p>
+        </div>
+      );
+    }
+    
+    return (
+      <div className="folder-tree">
+        {nodes.map((node, index) => (
+          <FolderItem
+            key={`${node.name}-${index}`}
+            item={node}
+            path=""
+            isSelected={selectedItem === node}
+            onSelect={handleSelectItem}
+            onToggle={handleToggleFolder}
+            isOpen={expandedFolders.has(`/${node.name}`)}
+            level={0}
+            expandedFolders={expandedFolders}
+          />
+        ))}
+  return (
+    <div className="p-4 text-center text-gray-400">
+      <p>Keine Ordner oder Dateien gefunden.</p>
+    </div>
+  );
+}
+    
+return (
+  <div className="folder-tree">
+    {nodes.map((node, index) => (
+      <FolderItem
+        key={`${node.name}-${index}`}
+        item={node}
+        path=""
+        isSelected={selectedItem === node}
+        onSelect={handleSelectItem}
+        onToggle={handleToggleFolder}
+        isOpen={expandedFolders.has(`/${node.name}`)}
+        level={0}
+        expandedFolders={expandedFolders}
+      />
+    ))}
+  </div>
+);
+};
+  
+return (
+<div className="min-h-screen bg-[var(--color-bg-primary)]">
+  <AdminNav />
+  <div className="max-w-[1200px] mx-auto px-4 py-8">
+    <h1 className={styles.adminTitle}>Ordnerverwaltung</h1>
+        
+    <div className="p-4 flex flex-col h-full">
+      {/* Verstecktes File-Input-Element */}
+      <input 
+        type="file" 
+        ref={fileInputRef} 
+        onChange={handleFileChange} 
+        className="hidden" 
+        multiple 
+      />
+            ref={fileInputRef} 
+            onChange={handleFileChange} 
+            className="hidden" 
+            multiple 
+          />
+          
+          {/* Aktionsleiste */}
+          <div className="mb-4 flex justify-between items-center">
+            <div className="flex space-x-2">
+              <button
+                onClick={handleNewFolderClick}
+                className="px-3 py-2 bg-[var(--color-primary-500)] text-white rounded hover:bg-[var(--color-primary-600)] transition-colors"
+              >
+                <FolderPlus size={18} className="inline mr-1" />
+                Neuer Ordner
+              </button>
+              
+              <button
+                onClick={handleUploadClick}
+                className="px-3 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+                disabled={!selectedPath || isUploading}
+              >
+                <Upload size={18} className="inline mr-1" />
+                {isUploading ? 'Wird hochgeladen...' : 'Dateien hochladen'}
+              </button>
+            </div>
+            
+            {selectedItem && (
+              <div className="hidden md:flex space-x-2">
+                <button
+                  onClick={handleRenameClick}
+                  className="px-3 py-2 border border-gray-300 rounded hover:bg-gray-100 transition-colors"
+                >
+                  <Edit size={18} className="inline mr-1" />
+                  Umbenennen
+                </button>
+                
+                <button
+                  onClick={handleDeleteClick}
+                  className="px-3 py-2 border border-red-300 text-red-600 rounded hover:bg-red-50 transition-colors"
+                >
+                  <Trash2 size={18} className="inline mr-1" />
+                  Löschen
+                </button>
+              </div>
+            )}
+          </div>
+          
+          {/* Upload-Fortschrittsanzeige */}
+          {isUploading && (
+            <div className="mb-4">
+              <div className="flex justify-between mb-1">
+                <span className="text-sm font-medium">Dateien werden hochgeladen...</span>
+                <span className="text-sm font-medium">{uploadProgress}%</span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2.5">
+                <div 
+                  className="bg-green-600 h-2.5 rounded-full transition-all duration-300" 
+                  style={{ width: `${uploadProgress}%` }}
+                ></div>
+              </div>
+            </div>
+          )}
+          
+          {/* Ordnerstruktur */}
+          <div className="flex-1 overflow-auto border border-gray-200 rounded">
+            {isLoading ? (
+              <div className="flex items-center justify-center h-64">
+                <Loader2 className="animate-spin mr-2" size={24} />
+                <span>Lade Ordnerstruktur...</span>
+              </div>
+            ) : error ? (
+              <div className="p-4 bg-red-100 text-red-800 rounded-md flex items-center">
+                <AlertCircle className="mr-2" size={20} />
+                <span>{error}</span>
+              </div>
+            ) : (
+              renderFolderTree(folderStructure)
+            )}
+          </div>
+        </div>
+        
+        {/* Mobile Action Bar */}
+        <MobileActionBar
+          selectedItem={selectedItem}
+          onNewFolder={handleNewFolderClick}
+          onRename={handleRenameClick}
+          onDelete={handleDeleteClick}
+          onMove={() => {}}
+        />
+        
+        {/* Dialoge */}
+        {showNewFolderDialog && (
+          <NewFolderDialog 
+            onClose={() => setShowNewFolderDialog(false)}
+            onConfirm={handleCreateFolder}
+            parentPath={selectedPath || ""}
+          />
+        )}
+        
+        {showRenameDialog && selectedItem && (
+          <RenameDialog 
+            item={selectedItem}
+            onClose={() => setShowRenameDialog(false)}
+            onConfirm={handleRenameFolder}
+            path={selectedPath || ""}
+          />
+        )}
+        
+        {showDeleteDialog && selectedItem && (
+          <DeleteConfirmDialog 
+            item={selectedItem}
+            onClose={() => setShowDeleteDialog(false)}
+            onConfirm={handleDeleteFolder}
+            path={selectedPath || ""}
+          />
+        )}
+      </div>
+    </div>
+  );
+}

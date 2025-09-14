@@ -1,0 +1,72 @@
+[2025-04-30 10:35:18] Empfangenes Token: mysecrettoken, Gültiges Token: mysecrettoken
+[2025-04-30 10:35:18] Empfangene Daten: {"year":"5000","gallery":"tes"}
+[2025-04-30 10:35:18] Galeriepfad: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/5000/tes
+[2025-04-30 10:35:18] Berechtigungen für uploads-Verzeichnis: 0777
+[2025-04-30 10:35:18] Berechtigungen für Jahr-Verzeichnis: 0755
+[2025-04-30 10:35:18] Galerie gefunden: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/5000/tes
+[2025-04-30 10:35:18] Versuche Galerie zu löschen: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/5000/tes
+[2025-04-30 10:35:18] Dateien im Verzeichnis: ., .., DSC00143.jpg, meta.json
+[2025-04-30 10:35:18] Galerie erfolgreich gelöscht: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/5000/tes
+[2025-04-30 19:01:15] Empfangenes Token: mysecrettoken, Gültiges Token: mysecrettoken
+[2025-04-30 19:01:15] Empfangene Daten: {"year":"2007","gallery":"28.03.2007 - Lostplaces - Leipzig"}
+[2025-04-30 19:01:15] Galeriepfad: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/2007/28.03.2007 - Lostplaces - Leipzig
+[2025-04-30 19:01:15] Berechtigungen für uploads-Verzeichnis: 0777
+[2025-04-30 19:01:15] Berechtigungen für Jahr-Verzeichnis: 0755
+[2025-04-30 19:01:15] Galerie gefunden: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/2007/28.03.2007 - Lostplaces - Leipzig
+[2025-04-30 19:01:15] Versuche Galerie zu löschen: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/2007/28.03.2007 - Lostplaces - Leipzig
+[2025-04-30 19:01:15] Dateien im Verzeichnis: ., .., DSC00101.JPG, DSC00102.JPG, DSC00103.JPG, DSC00104.JPG, DSC00105.JPG, DSC00106.JPG, DSC00107.JPG, DSC00108.JPG, DSC00109.JPG, DSC00110.JPG, DSC00111.JPG, DSC00112.JPG, DSC00113.JPG, DSC00114.JPG, DSC00115.JPG, DSC00116.JPG, DSC00117.JPG, DSC00118.JPG, DSC00119.JPG, DSC00120.JPG, DSC00121.JPG, DSC00122.JPG, DSC00123.JPG, DSC00124.JPG, DSC00125.JPG, DSC00126.JPG, DSC00127.JPG, DSC00129.JPG, DSC00130.JPG, DSC00131.JPG, DSC00132.JPG, DSC00133.JPG, DSC00134.JPG, DSC00135.JPG, DSC00136.JPG, DSC00137.JPG, DSC00138.JPG, DSC00139.JPG, DSC00140.JPG, DSC00141.JPG, DSC00142.JPG, DSC00143.JPG, DSC00144.JPG, DSC00145.JPG, DSC00146.JPG, DSC00147.JPG, DSC00148.JPG, DSC00149.JPG, DSC00150.JPG, DSC00151.JPG, DSC00152.JPG, DSC00153.JPG, DSC00154.JPG, DSC00155.JPG, DSC00156.JPG, DSC00157.JPG, DSC00158.JPG, DSC00159.JPG, DSC00160.JPG, DSC00161.JPG, DSC00162.JPG, DSC00163.JPG, DSC00164.JPG, DSC00165.JPG, DSC00166.JPG, DSC00167.JPG, DSC00168.JPG, DSC00170.JPG, DSC00171.JPG, DSC00172.JPG, DSC00173.JPG, DSC00174.JPG, DSC00175.JPG, DSC00176.JPG, DSC00177.JPG, DSC00178.JPG, DSC00179.JPG, DSC00180.JPG, meta.json
+[2025-04-30 19:01:15] Galerie erfolgreich gelöscht: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/2007/28.03.2007 - Lostplaces - Leipzig
+[2025-05-25 13:50:41] Empfangenes Token: mysecrettoken, Gültiges Token: mysecrettoken
+[2025-05-25 13:50:41] Empfangene Daten: {"year":"4444","gallery":"44"}
+[2025-05-25 13:50:41] Galeriepfad: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/4444/44
+[2025-05-25 13:50:41] Berechtigungen für uploads-Verzeichnis: 0777
+[2025-05-25 13:50:41] Berechtigungen für Jahr-Verzeichnis: 0755
+[2025-05-25 13:50:41] Galerie gefunden: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/4444/44
+[2025-05-25 13:50:41] Versuche Galerie zu löschen: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/4444/44
+[2025-05-25 13:50:41] Dateien im Verzeichnis: ., .., 2021_Testqw_6804b96d3aaaf.jpg, meta.json
+[2025-05-25 13:50:41] Galerie erfolgreich gelöscht: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/4444/44
+[2025-05-29 09:08:53] Empfangenes Token: mysecrettoken, Gültiges Token: mysecrettoken
+[2025-05-29 09:08:53] Empfangene Daten: {"year":"3000","gallery":"sonstiges-VIDEOS"}
+[2025-05-29 09:08:53] Galeriepfad: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/3000/sonstiges-VIDEOS
+[2025-05-29 09:08:53] Berechtigungen für uploads-Verzeichnis: 0777
+[2025-05-29 09:08:53] Berechtigungen für Jahr-Verzeichnis: 0755
+[2025-05-29 09:08:53] Galerie gefunden: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/3000/sonstiges-VIDEOS
+[2025-05-29 09:08:53] Versuche Galerie zu löschen: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/3000/sonstiges-VIDEOS
+[2025-05-29 09:08:53] Dateien im Verzeichnis: ., .., C0201.mp4, C0209.mov, C0233.mov, meta.json, thumb, video_thumb
+[2025-05-29 09:08:53] Galerie erfolgreich gelöscht: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/3000/sonstiges-VIDEOS
+[2025-05-29 09:54:27] Empfangenes Token: mysecrettoken, Gültiges Token: mysecrettoken
+[2025-05-29 09:54:27] Empfangene Daten: {"year":"1000","gallery":"test"}
+[2025-05-29 09:54:27] Galeriepfad: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/1000/test
+[2025-05-29 09:54:27] Berechtigungen für uploads-Verzeichnis: 0777
+[2025-05-29 09:54:27] Berechtigungen für Jahr-Verzeichnis: 0755
+[2025-05-29 09:54:27] Galerie gefunden: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/1000/test
+[2025-05-29 09:54:27] Versuche Galerie zu löschen: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/1000/test
+[2025-05-29 09:54:27] Dateien im Verzeichnis: ., .., DSC01418.jpg, meta.json
+[2025-05-29 09:54:27] Galerie erfolgreich gelöscht: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/1000/test
+[2025-05-29 10:33:07] Empfangenes Token: mysecrettoken, Gültiges Token: mysecrettoken
+[2025-05-29 10:33:07] Empfangene Daten: {"year":"3000","gallery":"sonstiges - videos"}
+[2025-05-29 10:33:07] Galeriepfad: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/3000/sonstiges - videos
+[2025-05-29 10:33:07] Berechtigungen für uploads-Verzeichnis: 0777
+[2025-05-29 10:33:07] Berechtigungen für Jahr-Verzeichnis: 0755
+[2025-05-29 10:33:07] Galerie gefunden: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/3000/sonstiges - videos
+[2025-05-29 10:33:07] Versuche Galerie zu löschen: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/3000/sonstiges - videos
+[2025-05-29 10:33:07] Dateien im Verzeichnis: ., .., C0201.mov, C0209.mov, C0233.mov, meta.json, thumbs, video_thumbs
+[2025-05-29 10:33:07] Galerie erfolgreich gelöscht: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/3000/sonstiges - videos
+[2025-06-09 08:07:31] Empfangenes Token: mysecrettoken, Gültiges Token: mysecrettoken
+[2025-06-09 08:07:31] Empfangene Daten: {"year":"5000","gallery":"test"}
+[2025-06-09 08:07:31] Galeriepfad: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/5000/test
+[2025-06-09 08:07:31] Berechtigungen für uploads-Verzeichnis: 0777
+[2025-06-09 08:07:31] Berechtigungen für Jahr-Verzeichnis: 0755
+[2025-06-09 08:07:31] Galerie gefunden: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/5000/test
+[2025-06-09 08:07:31] Versuche Galerie zu löschen: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/5000/test
+[2025-06-09 08:07:31] Dateien im Verzeichnis: ., .., DSC08092.JPG, meta.json
+[2025-06-09 08:07:31] Galerie erfolgreich gelöscht: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/5000/test
+[2025-07-09 19:07:57] Empfangenes Token: mysecrettoken, Gültiges Token: mysecrettoken
+[2025-07-09 19:07:57] Empfangene Daten: {"year":"2026","gallery":"hallo"}
+[2025-07-09 19:07:57] Galeriepfad: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/2026/hallo
+[2025-07-09 19:07:57] Berechtigungen für uploads-Verzeichnis: 0777
+[2025-07-09 19:07:57] Berechtigungen für Jahr-Verzeichnis: 0755
+[2025-07-09 19:07:57] Galerie gefunden: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/2026/hallo
+[2025-07-09 19:07:57] Versuche Galerie zu löschen: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/2026/hallo
+[2025-07-09 19:07:57] Dateien im Verzeichnis: ., .., Trinax Mix Set 066 - 01.04.2021.png, meta.json
+[2025-07-09 19:07:57] Galerie erfolgreich gelöscht: /www/htdocs/w0062fc1/TuBox/WebDisk/api/../uploads/2026/hallo
