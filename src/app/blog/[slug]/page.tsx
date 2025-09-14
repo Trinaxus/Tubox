@@ -6,9 +6,9 @@ import Link from 'next/link';
 import blogStyles from '../blogCards.module.css';
 
 type BlogDetailProps = {
-  params: Promise<{
-    slug: string;
-  }>;
+  params: {
+    slug: string | string[];
+  };
 };
 
 // Hilfsfunktion: Lade Blog-Post über interne API, damit lokaler Modus funktioniert
@@ -34,7 +34,8 @@ async function getBlogPost(slug: string) {
 }
 
 export default async function BlogDetail({ params }: BlogDetailProps) {
-  const { slug } = await params;
+  const raw = params?.slug as string | string[] | undefined;
+  const slug = Array.isArray(raw) ? raw[0] : raw;
   if (!slug) return notFound();
   const decodedSlug = decodeURIComponent(slug);
   

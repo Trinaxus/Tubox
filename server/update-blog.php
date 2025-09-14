@@ -3,7 +3,9 @@
 $allowedOrigins = [
     'https://tubox.de',
     'https://www.tubox.de',
-    'https://tubox-de-next.vercel.app'
+    'https://tubox-de-next.vercel.app',
+    'https://tubox-five.vercel.app', // aktuelle Vercel-Domain
+    'http://localhost:3000'          // lokale Entwicklung
 ];
 
 // CORS-Header setzen
@@ -20,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
-// Verzeichnis für Blog-Dateien
-$blogDir = __DIR__;
+// Verzeichnis für Blog-Dateien: auf uploads/blog zeigen, damit EXTERNAL_BLOG_URL darauf zugreifen kann
+$blogDir = __DIR__ . '/uploads/blog';
 
 // Lese die JSON-Daten aus dem Request-Body
 $requestData = json_decode(file_get_contents('php://input'), true);
