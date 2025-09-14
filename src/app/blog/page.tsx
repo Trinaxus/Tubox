@@ -5,11 +5,8 @@ import BlogList from './BlogList';
 // Hilfsfunktion: Lade Blogposts über interne API (unterstützt lokalen/external Modus)
 async function getBlogPosts() {
   try {
-    // Baue eine absolute Basis-URL für serverseitiges fetch
-    const rawBase = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || process.env.VERCEL_URL || 'http://localhost:3000';
-    const base = rawBase.startsWith('http') ? rawBase.replace(/\/$/, '') : `https://${rawBase.replace(/\/$/, '')}`;
-    const apiUrl = `${base}/api/json-blog`;
-    const res = await fetch(apiUrl, {
+    // Relativer Aufruf vermeidet ENV-Abhängigkeit in Produktion
+    const res = await fetch('/api/json-blog', {
       cache: 'no-store',
     });
     if (!res.ok) {
