@@ -14,8 +14,12 @@ export async function GET(request: Request) {
     const debug = url.searchParams.get('debug');
     const summary = url.searchParams.get('summary') === '1';
     const useExternal = (process.env.USE_EXTERNAL || 'false').toLowerCase() === 'true';
-    const EXTERNAL_BLOG_URL = (process.env.EXTERNAL_BLOG_URL && process.env.EXTERNAL_BLOG_URL.trim())
+    let EXTERNAL_BLOG_URL = (process.env.EXTERNAL_BLOG_URL && process.env.EXTERNAL_BLOG_URL.trim())
       || (process.env.NEXT_PUBLIC_SERVER_BASE_URL ? `${process.env.NEXT_PUBLIC_SERVER_BASE_URL.replace(/\/$/, '')}/uploads/blog` : '');
+    if (!EXTERNAL_BLOG_URL) {
+      // Letzter Fallback, falls ENV in Vercel fehlen
+      EXTERNAL_BLOG_URL = 'https://tubox.de/TUBOX/server/uploads/blog';
+    }
     
     console.log('API-Route /api/json-blog draft=', draft, 'useExternal=', useExternal, 'EXTERNAL_BLOG_URL=', EXTERNAL_BLOG_URL);
     
