@@ -21,16 +21,27 @@ export async function GET(request: Request) {
     
     // Index ausschließlich extern laden (vereinfachtes Modell)
     let indexData: any = null;
+    let diag: any = debug === '1' ? { resolvedExternal: EXTERNAL_BLOG_URL || null } : null;
     if (EXTERNAL_BLOG_URL) {
+      const idxUrl = `${EXTERNAL_BLOG_URL.replace(/\/$/, '')}/index.json?t=${Date.now()}`;
       try {
-        const res = await fetch(`${EXTERNAL_BLOG_URL.replace(/\/$/, '')}/index.json?t=${Date.now()}`, { cache: 'no-store' });
+        const res = await fetch(idxUrl, { cache: 'no-store' });
+        if (debug === '1') {
+          diag = { ...(diag || {}), indexUrl: idxUrl, status: res.status, ok: res.ok };
+        }
         if (res.ok) {
           const text = await res.text();
+          if (debug === '1') diag = { ...(diag || {}), length: text.length };
           try { indexData = JSON.parse(text); } catch { indexData = null; }
         }
-      } catch {}
+      } catch (e: any) {
+        if (debug === '1') diag = { ...(diag || {}), error: e?.message || String(e) };
+      }
     }
     if (!indexData) {
+      if (debug === '1') {
+        return NextResponse.json({ debug: true, results: [], diagnostics: diag || {} }, { status: 200 });
+      }
       return NextResponse.json({ results: [] }, { status: 200 });
     }
     
@@ -45,6 +56,7 @@ export async function GET(request: Request) {
       else postsArray = Object.values(indexData as any);
     }
     if (!Array.isArray(postsArray)) postsArray = [];
+    if (debug === '1') diag = { ...(diag || {}), parsedCount: postsArray.length };
     
     // Blogposts filtern, wenn draft-Parameter gesetzt ist
     let filteredPosts = postsArray;
@@ -152,6 +164,11 @@ export async function GET(request: Request) {
         };
       };
       const cards = filteredPosts.map(summarize);
+      if (debug === '1') {
+        return NextResponse.json({ debug: true, results: cards, diagnostics: diag || {} }, {
+          headers: { 'Cache-Control': 's-maxage=60, stale-while-revalidate=300' }
+        });
+      }
       return NextResponse.json({ results: cards }, {
         headers: {
           'Cache-Control': 's-maxage=60, stale-while-revalidate=300'

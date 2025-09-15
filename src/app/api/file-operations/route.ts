@@ -79,7 +79,14 @@ export async function POST(req: NextRequest) {
 
         let body: BodyInit | undefined = undefined;
         const ct = req.headers.get('content-type') || '';
-        if (ct.includes('application/x-www-form-urlencoded')) {
+        if (action === 'list') {
+          // Ensure path param is passed
+          const root = url.searchParams.get('path') || 'uploads';
+          const params = new URLSearchParams();
+          params.set('path', root);
+          body = params.toString();
+          headers['Content-Type'] = 'application/x-www-form-urlencoded';
+        } else if (ct.includes('application/x-www-form-urlencoded')) {
           const raw = await req.text();
           headers['Content-Type'] = 'application/x-www-form-urlencoded';
           body = raw;
