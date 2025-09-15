@@ -14,9 +14,10 @@ export async function GET(request: Request) {
     const debug = url.searchParams.get('debug');
     const summary = url.searchParams.get('summary') === '1';
     const useExternal = (process.env.USE_EXTERNAL || 'false').toLowerCase() === 'true';
-    const EXTERNAL_BLOG_URL = process.env.EXTERNAL_BLOG_URL || '';
+    const EXTERNAL_BLOG_URL = (process.env.EXTERNAL_BLOG_URL && process.env.EXTERNAL_BLOG_URL.trim())
+      || (process.env.NEXT_PUBLIC_SERVER_BASE_URL ? `${process.env.NEXT_PUBLIC_SERVER_BASE_URL.replace(/\/$/, '')}/uploads/blog` : '');
     
-    console.log('API-Route /api/json-blog aufgerufen mit draft=', draft, 'useExternal=', useExternal);
+    console.log('API-Route /api/json-blog draft=', draft, 'useExternal=', useExternal, 'EXTERNAL_BLOG_URL=', EXTERNAL_BLOG_URL);
     
     // Index ausschließlich extern laden (vereinfachtes Modell)
     let indexData: any = null;

@@ -49,9 +49,13 @@ export async function POST(req: NextRequest) {
     }
     slug = normalizeSlug(slug || '');
 
-    const useExternal = (process.env.USE_EXTERNAL || 'false').toLowerCase() === 'true';
-    const EXTERNAL_BLOG_URL = process.env.EXTERNAL_BLOG_URL || '';
-    const UPDATE_BLOG_PHP_URL = process.env.UPDATE_BLOG_PHP_URL || '';
+    const useExternalEnv = (process.env.USE_EXTERNAL || 'false').toLowerCase() === 'true';
+    const serverBase = process.env.SERVER_BASE_URL ? process.env.SERVER_BASE_URL.replace(/\/$/, '') : '';
+    const EXTERNAL_BLOG_URL = (process.env.EXTERNAL_BLOG_URL && process.env.EXTERNAL_BLOG_URL.trim())
+      || (process.env.NEXT_PUBLIC_SERVER_BASE_URL ? `${process.env.NEXT_PUBLIC_SERVER_BASE_URL.replace(/\/$/, '')}/uploads/blog` : '');
+    const UPDATE_BLOG_PHP_URL = (process.env.UPDATE_BLOG_PHP_URL && process.env.UPDATE_BLOG_PHP_URL.trim())
+      || (serverBase ? `${serverBase}/update-blog.php` : '');
+    const useExternal = useExternalEnv || Boolean(UPDATE_BLOG_PHP_URL);
 
     // Existenz prüfen (extern bevorzugt)
     if (useExternal && EXTERNAL_BLOG_URL) {

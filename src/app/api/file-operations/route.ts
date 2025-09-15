@@ -57,7 +57,9 @@ export async function POST(req: NextRequest) {
 
   const url = new URL(req.url);
   const action = url.searchParams.get('action');
-  const useExternal = (process.env.USE_EXTERNAL || 'false').toLowerCase() === 'true';
+  const serverBase = process.env.SERVER_BASE_URL ? process.env.SERVER_BASE_URL.replace(/\/$/, '') : '';
+  const resolvedFileApi = (process.env.FILE_OPERATIONS_API && process.env.FILE_OPERATIONS_API.trim()) || (serverBase ? `${serverBase}/file-operations.php` : '');
+  const useExternal = (process.env.USE_EXTERNAL || 'false').toLowerCase() === 'true' || Boolean(resolvedFileApi);
 
   try {
     // Unterstützung für zwei Stile: action=... (FormData/URL-encoded) und JSON body {operation: 'list'}
@@ -65,7 +67,7 @@ export async function POST(req: NextRequest) {
       // Action-basierte Aufrufe
       if (useExternal) {
         // Forward to external FILE_OPERATIONS_API
-        const apiUrl = (process.env.FILE_OPERATIONS_API || '').trim();
+        const apiUrl = resolvedFileApi;
         if (!apiUrl) return NextResponse.json({ success: false, error: 'FILE_OPERATIONS_API not configured' }, { status: 500 });
 
         // Build a request to external
@@ -278,9 +280,11 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ success: false, error: 'Keine Berechtigung' }, { status: 403 });
   }
   const root = req.nextUrl.searchParams.get('path') || 'uploads';
-  const useExternal = (process.env.USE_EXTERNAL || 'false').toLowerCase() === 'true';
+  const serverBase = process.env.SERVER_BASE_URL ? process.env.SERVER_BASE_URL.replace(/\/$/, '') : '';
+  const resolvedFileApi = (process.env.FILE_OPERATIONS_API && process.env.FILE_OPERATIONS_API.trim()) || (serverBase ? `${serverBase}/file-operations.php` : '');
+  const useExternal = (process.env.USE_EXTERNAL || 'false').toLowerCase() === 'true' || Boolean(resolvedFileApi);
   if (useExternal) {
-    const apiUrl = (process.env.FILE_OPERATIONS_API || '').trim();
+    const apiUrl = resolvedFileApi;
     if (!apiUrl) return NextResponse.json({ success: false, error: 'FILE_OPERATIONS_API not configured' }, { status: 500 });
     const headers: Record<string, string> = {
       'Authorization': `Bearer ${process.env.FILE_OPERATIONS_TOKEN || ''}`,
